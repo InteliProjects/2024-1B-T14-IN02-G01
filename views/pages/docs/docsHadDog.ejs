@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sails.js API Documentation - HadDog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .pastel-block {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .pastel-pink { background-color: #fbb4ae; }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Sails.js API Documentation - HadDog</h1>
+
+    <h2>Endpoints</h2>
+
+    <!-- Formulário HadDog -->
+    <div class="pastel-block pastel-pink">
+        <h5>Formulário HadDog</h5>
+        <h6>POST /hadDogs</h6>
+        <p>Este endpoint cria um novo registro "HadDog" com os dados fornecidos no corpo da requisição.</p>
+        <div class="card mb-4 pastel-pink">
+            <div class="card-header bg-primary text-white">
+                Criar Novo Registro "HadDog"
+            </div>
+            <div class="card-body">
+                <form id="HadDogForm">
+                    <div class="mb-3">
+                        <label for="userId" class="form-label">ID do Usuário</label>
+                        <input type="number" class="form-control" id="userId" name="id_user" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dogs_name" class="form-label">Nome do Cachorro</label>
+                        <input type="text" class="form-control" id="dogs_name" name="dogs_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="belonging" class="form-label">Pertenceu a Quem</label>
+                        <input type="text" class="form-control" id="belonging" name="belonging" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dogs_personality" class="form-label">Personalidade do Cachorro</label>
+                        <input type="text" class="form-control" id="dogs_personality" name="dogs_personality" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="how_much_stayed" class="form-label">Tempo de Convívio</label>
+                        <input type="number" class="form-control" id="how_much_stayed" name="how_much_stayed" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="first_dog" class="form-label">Primeiro Cachorro</label>
+                        <select class="form-select" id="first_dog" name="first_dog" required>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="number_dogs" class="form-label">Quantidade de Cães na Casa</label>
+                        <input type="number" class="form-control" id="number_dogs" name="number_dogs" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="number_cats" class="form-label">Quantidade de Gatos na Casa</label>
+                        <input type="number" class="form-control" id="number_cats" name="number_cats" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inclusion_year" class="form-label">Ano de Inclusão do Cachorro</label>
+                        <input type="text" class="form-control" id="inclusion_year" name="inclusion_year" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="castrated" class="form-label">Castrado</label>
+                        <select class="form-select" id="castrated" name="castrated" required>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="castration_age" class="form-label">Idade de Castração</label>
+                        <input type="number" class="form-control" id="castration_age" name="castration_age">
+                    </div>
+                    <div class="mb-3">
+                        <label for="breed" class="form-label">Raça do Cachorro</label>
+                        <input type="text" class="form-control" id="breed" name="breed" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="breed_type" class="form-label">Tipo de Raça</label>
+                        <input type="text" class="form-control" id="breed_type" name="breed_type">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dogs_origin" class="form-label">Origem do Cachorro</label>
+                        <input type="text" class="form-control" id="dogs_origin" name="dogs_origin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cost_to_acquire" class="form-label">Custo para Adquirir</label>
+                        <input type="text" class="form-control" id="cost_to_acquire" name="cost_to_acquire" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dogs_characteristics" class="form-label">Características do Cachorro</label>
+                        <input type="text" class="form-control" id="dogs_characteristics" name="dogs_characteristics" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="involved_decision" class="form-label">Envolvido na Decisão</label>
+                        <input type="text" class="form-control" id="involved_decision" name="involved_decision" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="favorite_things_first_weeks" class="form-label">Coisas Favoritas nas Primeiras Semanas</label>
+                        <input type="text" class="form-control" id="favorite_things_first_weeks" name="favorite_things_first_weeks" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dont_liked_things" class="form-label">Coisas que Não Gostou</label>
+                        <input type="text" class="form-control" id="dont_liked_things" name="dont_liked_things" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="vet_visits" class="form-label">Visitas ao Veterinário</label>
+                        <select class="form-select" id="vet_visits" name="vet_visits" required>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="number_of_vet_visits" class="form-label">Número de Visitas ao Veterinário</label>
+                        <input type="number" class="form-control" id="number_of_vet_visits" name="number_of_vet_visits">
+                    </div>
+                    <div class="mb-3">
+                        <label for="visit_reason" class="form-label">Motivo das Visitas</label>
+                        <input type="text" class="form-control" id="visit_reason" name="visit_reason">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stopped_live_with_dog" class="form-label">Data de Parada de Convívio</label>
+                        <input type="date" class="form-control" id="stopped_live_with_dog" name="stopped_live_with_dog">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stopped_live_dogs_age" class="form-label">Idade do Cachorro Quando Parou de Viver</label>
+                        <input type="number" class="form-control" id="stopped_live_dogs_age" name="stopped_live_dogs_age" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason_stopped_living" class="form-label">Motivo para Parar de Viver com o Cachorro</label>
+                        <input type="text" class="form-control" id="reason_stopped_living" name="reason_stopped_living" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="would_live_with_other_dog" class="form-label">Viveria com Outro Cachorro</label>
+                        <select class="form-select" id="would_live_with_other_dog" name="would_live_with_other_dog" required>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason_would_live_with_other_dog" class="form-label">Motivo para Viver com Outro Cachorro</label>
+                        <input type="text" class="form-control" id="reason_would_live_with_other_dog" name="reason_would_live_with_other_dog">
+                    </div>
+                    <div class="mb-3">
+                        <label for="reason_live_with_other_dog" class="form-label">ID ReasonsToHaveTheDog</label>
+                        <input type="text" class="form-control" id="reason_live_with_other_dog" name="reason_live_with_other_dog">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact_permission" class="form-label">Permissão de Contato</label>
+                        <select class="form-select" id="contact_permission" name="contact_permission" required>
+                            <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Enviar Formulário</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h6>GET /hadDogs</h6>
+        <p>Este endpoint retorna uma lista de todos os registros "HadDog" cadastrados no sistema.</p>
+        <div class="pastel-block pastel-pink">
+            <div class="card-header bg-secondary text-white">
+                Lista de Registros "HadDog"
+            </div>
+            <div class="card-body" id="hadDogsList">
+                <!-- Lista de registros "HadDog" será preenchida via JavaScript -->
+            </div>
+        </div>
+        <h6>GET /hadDogs/:id</h6>
+        <p>Este endpoint retorna os detalhes de um registro "HadDog" específico com o ID fornecido na URL.</p>
+        <div class="pastel-block pastel-pink">
+            <div class="card-header bg-info text-white">
+                Buscar Registro "HadDog" por ID
+            </div>
+            <div class="card-body">
+                <form id="getHadDogByIdForm">
+                    <div class="mb-3">
+                        <label for="hadDogId" class="form-label">ID do Registro "HadDog"</label>
+                        <input type="number" class="form-control" id="hadDogId" name="had_dog_id" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-info">Buscar Registro</button>
+                    </div>
+                </form>
+                <div id="hadDogDetails" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    // Função para carregar a lista de registros "HadDog"
+    function carregarListaHadDogs() {
+        axios.get('/hadDogs')
+            .then(function (response) {
+                const hadDogs = response.data;
+                const listaHtml = hadDogs.map(function (hadDog) {
+                    return `
+                        <div class="mb-2">
+                            <strong>ID:</strong> ${hadDog.id} - 
+                            <strong>Nome do Cachorro:</strong> ${hadDog.dogs_name} - 
+                            <strong>Pertenceu a:</strong> ${hadDog.belonging} - 
+                            <strong>Personalidade:</strong> ${hadDog.dogs_personality} - 
+                            <strong>Tempo de Convívio:</strong> ${hadDog.how_much_stayed} - 
+                            <strong>Primeiro Cachorro:</strong> ${hadDog.first_dog} - 
+                            <strong>Quantidade de Cães:</strong> ${hadDog.number_dogs} - 
+                            <strong>Quantidade de Gatos:</strong> ${hadDog.number_cats} - 
+                            <strong>Ano de Inclusão:</strong> ${hadDog.inclusion_year} - 
+                            <strong>Castrado:</strong> ${hadDog.castrated} - 
+                            <strong>Idade de Castração:</strong> ${hadDog.castration_age} - 
+                            <strong>Raça:</strong> ${hadDog.breed} - 
+                            <strong>Tipo de Raça:</strong> ${hadDog.breed_type} - 
+                            <strong>Origem:</strong> ${hadDog.dogs_origin} - 
+                            <strong>Custo para Adquirir:</strong> ${hadDog.cost_to_acquire} - 
+                            <strong>Características:</strong> ${hadDog.dogs_characteristics} - 
+                            <strong>Envolvido na Decisão:</strong> ${hadDog.involved_decision} - 
+                            <strong>Coisas Favoritas:</strong> ${hadDog.favorite_things_first_weeks} - 
+                            <strong>Coisas que Não Gostou:</strong> ${hadDog.dont_liked_things} - 
+                            <strong>Visitas ao Veterinário:</strong> ${hadDog.vet_visits} - 
+                            <strong>Número de Visitas:</strong> ${hadDog.number_of_vet_visits} - 
+                            <strong>Motivo das Visitas:</strong> ${hadDog.visit_reason} - 
+                            <strong>Data de Parada de Convívio:</strong> ${hadDog.stopped_live_with_dog} - 
+                            <strong>Idade na Parada de Convívio:</strong> ${hadDog.stopped_live_dogs_age} - 
+                            <strong>Motivo para Parar de Viver com o Cachorro:</strong> ${hadDog.reason_stopped_living} - 
+                            <strong>Viveria com Outro Cachorro:</strong> ${hadDog.would_live_with_other_dog} - 
+                            <strong>Motivo para Viver com Outro Cachorro:</strong> ${hadDog.reason_would_live_with_other_dog} - 
+                            <strong>ID ReasonsToHaveTheDog:</strong> ${hadDog.reason_live_with_other_dog} - 
+                            <strong>Permissão de Contato:</strong> ${hadDog.contact_permission}
+                        </div>
+                    `;
+                }).join('');
+                document.getElementById('hadDogsList').innerHTML = listaHtml;
+            })
+            .catch(function (error) {
+                console.error('Erro ao carregar lista de registros "HadDog":', error);
+            });
+    }
+
+    // Enviar dados para criar um novo registro "HadDog"
+    document.getElementById('HadDogForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const formJSON = Object.fromEntries(formData.entries());
+
+        axios.post('/hadDogs', formJSON)
+            .then(function () {
+                // Atualizar a lista de registros "HadDog" após a criação
+                carregarListaHadDogs();
+                // Limpar os campos do formulário
+                document.getElementById('HadDogForm').reset();
+            })
+            .catch(function (error) {
+                console.error('Erro ao criar registro "HadDog":', error);
+            });
+    });
+
+    // Função para buscar um registro "HadDog" por ID
+    document.getElementById('getHadDogByIdForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const hadDogId = document.getElementById('hadDogId').value;
+
+        axios.get(`/hadDogs/${hadDogId}`)
+            .then(function (response) {
+                const hadDog = response.data;
+                const hadDogDetailsHtml = `
+                    <div class="mb-2">
+                        <strong>ID:</strong> ${hadDog.id} <br>
+                        <strong>Nome do Cachorro:</strong> ${hadDog.dogs_name} <br>
+                        <strong>Pertenceu a:</strong> ${hadDog.belonging} <br>
+                        <strong>Personalidade:</strong> ${hadDog.dogs_personality} <br>
+                        <strong>Tempo de Convívio:</strong> ${hadDog.how_much_stayed} <br>
+                        <strong>Primeiro Cachorro:</strong> ${hadDog.first_dog} <br>
+                        <strong>Quantidade de Cães:</strong> ${hadDog.number_dogs} <br>
+                        <strong>Quantidade de Gatos:</strong> ${hadDog.number_cats} <br>
+                        <strong>Ano de Inclusão:</strong> ${hadDog.inclusion_year} <br>
+                        <strong>Castrado:</strong> ${hadDog.castrated} <br>
+                        <strong>Idade de Castração:</strong> ${hadDog.castration_age} <br>
+                        <strong>Raça:</strong> ${hadDog.breed} <br>
+                        <strong>Tipo de Raça:</strong> ${hadDog.breed_type} <br>
+                        <strong>Origem:</strong> ${hadDog.dogs_origin} <br>
+                        <strong>Custo para Adquirir:</strong> ${hadDog.cost_to_acquire} <br>
+                        <strong>Características:</strong> ${hadDog.dogs_characteristics} <br>
+                        <strong>Envolvido na Decisão:</strong> ${hadDog.involved_decision} <br>
+                        <strong>Coisas Favoritas:</strong> ${hadDog.favorite_things_first_weeks} <br>
+                        <strong>Coisas que Não Gostou:</strong> ${hadDog.dont_liked_things} <br>
+                        <strong>Visitas ao Veterinário:</strong> ${hadDog.vet_visits} <br>
+                        <strong>Número de Visitas:</strong> ${hadDog.number_of_vet_visits} <br>
+                        <strong>Motivo das Visitas:</strong> ${hadDog.visit_reason} <br>
+                        <strong>Data de Parada de Convívio:</strong> ${hadDog.stopped_live_with_dog} <br>
+                        <strong>Idade na Parada de Convívio:</strong> ${hadDog.stopped_live_dogs_age} <br>
+                        <strong>Motivo para Parar de Viver com o Cachorro:</strong> ${hadDog.reason_stopped_living} <br>
+                        <strong>Viveria com Outro Cachorro:</strong> ${hadDog.would_live_with_other_dog} <br>
+                        <strong>Motivo para Viver com Outro Cachorro:</strong> ${hadDog.reason_would_live_with_other_dog} <br>
+                        <strong>ID ReasonsToHaveTheDog:</strong> ${hadDog.reason_live_with_other_dog} <br>
+                        <strong>Permissão de Contato:</strong> ${hadDog.contact_permission}
+                    </div>
+                `;
+                document.getElementById('hadDogDetails').innerHTML = hadDogDetailsHtml;
+            })
+            .catch(function (error) {
+                console.error('Erro ao buscar registro "HadDog" por ID:', error);
+            });
+    });
+
+    // Carregar a lista de registros "HadDog" ao carregar a página
+    carregarListaHadDogs();
+</script>
+
+</body>
+</html>

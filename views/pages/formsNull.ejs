@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Metadados -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título da página -->
+    <title>Formulário - Não Deseja Conviver com Cães</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Estilos CSS -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+      body {
+        background-color: #d9d9d9;
+        font-family: "Poppins", sans-serif !important;
+        margin: 0;
+        padding: 0;
+      }
+
+      button,
+      .styled {
+        width: 75%;
+        background-color: #689d97;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10%;
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+
+      .container {
+        width: 90%; /* Define a largura máxima */
+        max-width: 400px; /* Define a largura máxima para 400px */
+        padding: 50px;
+        border: solid black 1px;
+        border-radius: 10px;
+        background-color: #d9d9d9;
+        position: relative;
+        margin: auto; /* Centraliza horizontalmente */
+        margin-bottom: 2%;
+      }
+
+      #reasons {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1001;
+        opacity: 60%;
+        max-height: 50px;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      #navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+
+      .logo {
+        order: 0; /* Coloca o menu à esquerda */
+      }
+
+      .menu {
+        order: 1; /* Coloca o logo à direita */
+      }
+      .footer-section {
+        position: relative;
+      }
+
+      .single-cta i {
+        color: #ff5e14;
+        font-size: 30px;
+        float: left;
+        margin-top: 8px;
+      }
+      .cta-text {
+        display: inline-block;
+      }
+      .cta-text h4 {
+        color: #689d97;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .img-footer {
+        margin-bottom: 30px;
+        margin-right: 5px;
+      }
+
+      footer {
+        color: #689d97;
+        border-top: 5px solid #689d97;
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid #2b5855;
+        position: relative;
+        padding: 10px 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="centralize">
+      <div id="navbar">
+        <!-- Adiciona menu hambúrguer -->
+        <img
+          src="https://i.ibb.co/31zsZwc/cardapio.png"
+          class="menu"
+          alt="menu"
+          border="0"
+          width="25px"
+        />
+        <!-- Adiciona logo do formulário -->
+        <img
+          src="https://i.ibb.co/Wc2kvHj/Logo.png"
+          class="logo"
+          alt="Logo"
+          border="0"
+          width="200"
+        />
+      </div>
+
+      <!-- Contêiner do formulário -->
+      <div class="container">
+        <!-- Formulário -->
+        <form id="dontWantDogForm">
+          <!-- Campo: Razões para não desejar conviver com cães -->
+          <div>
+            <label for="reasons"
+              >Por que você não deseja conviver com cães?</label
+            >
+            <textarea id="reasons" name="reasons" rows="6" required></textarea>
+          </div>
+          <!-- Botão de envio -->
+          <div>
+            <button type="submit" class="styled" id="botao-final">
+              Enviar formulário
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer-section">
+      <div class="footer-cta pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/address-book-solid.svg"
+                class="img-footer"
+                style="width: 60px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Entre em contato</h4>
+                <span
+                  ><a href="https://inspa.com.br/index.php/contato/"
+                    >Clique aqui!</a
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/phone-solid.svg"
+                class="img-footer"
+                style="width: 50px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Ligue aqui</h4>
+                <span>(51)98905-4953</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/envelope-solid.svg"
+                class="img-footer"
+                style="width: 50px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Envie um email</h4>
+                <span>contato@inspa.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script JavaScript -->
+    <script>
+      // Event listener para o envio do formulário
+      document
+        .getElementById("dontWantDogForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+          // Coleta os dados do formulário
+          const formData = new FormData(event.target);
+          const formJSON = Object.fromEntries(formData.entries());
+
+          try {
+            // Envio dos dados do formulário para o servidor
+            const response = await fetch("/dontWantDogs", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formJSON),
+            });
+            // Verifica se o envio foi bem-sucedido
+            if (response.ok) {
+              const data = await response.json();
+              console.log("Success:", data);
+              alert("Formulário enviado com sucesso!");
+            } else {
+              const errorData = await response.json();
+              console.error("Error:", errorData);
+              alert("Erro ao enviar formulário: " + errorData.message);
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Erro ao enviar formulário: " + error.message);
+          }
+        });
+      document
+        .getElementById("botao-final")
+        .addEventListener("click", function () {
+          window.location.href = "/finalPage";
+        });
+    </script>
+  </body>
+</html>

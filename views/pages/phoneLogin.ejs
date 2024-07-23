@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PsicoPets - Login com Telefone</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: #f6f5f7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: -20px 0 50px;
+        margin-top: 20px;
+      }
+
+      .container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
+          0 10px 10px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        width: 768px;
+        max-width: 100%;
+        min-height: 480px;
+        display: flex;
+      }
+
+      .left,
+      .right {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .left {
+        background: linear-gradient(to right, #689d97, #87cdc4) no-repeat 0 0 /
+          cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .left h2 {
+        color: white;
+      }
+
+      .left p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin: 20px 0 30px;
+        color: white;
+      }
+
+      .left button {
+        background-color: transparent;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 20px;
+        border: 1px solid white;
+        cursor: pointer;
+        transition: transform 80ms ease-in;
+      }
+
+      .left button:active {
+        transform: scale(0.95);
+      }
+
+      .left button:focus {
+        outline: none;
+      }
+
+      .right {
+        background-image: url("dog_background.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .right::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 1;
+      }
+
+      .phone-login-form {
+        position: relative;
+        z-index: 2;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        max-width: 300px;
+      }
+
+      .phone-login-form h2 {
+        margin-bottom: 20px;
+        font-size: 2em;
+        color: black;
+      }
+
+      .phone-login-form label {
+        margin: 10px 0 5px 0;
+        color: black;
+      }
+
+      .phone-login-form input {
+        background: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .phone-login-form button {
+        border-radius: 20px;
+        border: 1px solid #f5f2d0;
+        background: linear-gradient(to right, #689d97, #87cdc4) no-repeat 0 0 /
+          cover;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .footer {
+        margin-top: 25px;
+        text-align: center;
+      }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const firebaseConfig = {
+          apiKey: "AIzaSyASNPXniNYMktbQUAjOhjGWA4_dkO9uZ-Q",
+          authDomain: "abandono-zero-c27b0.firebaseapp.com",
+          projectId: "abandono-zero-c27b0",
+          storageBucket: "abandono-zero-c27b0.appspot.com",
+          messagingSenderId: "537894418550",
+          appId: "1:537894418550:web:8b559db756d68868c80757",
+          measurementId: "G-F2K8DE2MLD",
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+
+        let recaptchaVerifier;
+
+        document
+          .getElementById("sendCodeButton")
+          .addEventListener("click", async () => {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+              "recaptcha-container",
+              {
+                size: "invisible",
+              }
+            );
+
+            try {
+              const confirmationResult = await auth.signInWithPhoneNumber(
+                phoneNumber,
+                recaptchaVerifier
+              );
+              window.confirmationResult = confirmationResult;
+              alert("Código de verificação enviado!");
+            } catch (error) {
+              console.error("Erro ao enviar código de verificação:", error);
+              alert("Erro ao enviar código de verificação: " + error.message);
+            }
+          });
+
+        document
+          .getElementById("verifyCodeButton")
+          .addEventListener("click", async () => {
+            const code = document.getElementById("verificationCode").value;
+
+            try {
+              const result = await window.confirmationResult.confirm(code);
+              const idToken = await result.user.getIdToken();
+              const response = await fetch("/phoneLogin", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ idToken }),
+              });
+              if (!response.ok) {
+                throw new Error("Erro na resposta do servidor");
+              }
+              const data = await response.json();
+              if (data.user) {
+                window.location.href = "/generalforms";
+              } else {
+                alert("Erro ao fazer login com telefone");
+              }
+            } catch (error) {
+              console.error("Erro ao verificar código:", error);
+              alert("Erro ao verificar código: " + error.message);
+            }
+          });
+      });
+
+      function redirectToLogin() {
+        window.location.href = "/login";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <h2>Já tem uma conta?</h2>
+        <p>Faça login para responder o formulário</p>
+        <button onclick="redirectToLogin()">Fazer login</button>
+      </div>
+      <div class="right">
+        <form class="phone-login-form">
+          <h2>Login com Telefone</h2>
+          <label for="phoneNumber">Número de Telefone:</label>
+          <input type="text" id="phoneNumber" name="phoneNumber" required />
+          <div id="recaptcha-container"></div>
+          <button type="button" id="sendCodeButton">Enviar Código</button>
+          <label for="verificationCode">Código de Verificação:</label>
+          <input
+            type="text"
+            id="verificationCode"
+            name="verificationCode"
+            required
+          />
+          <button type="button" id="verifyCodeButton">Verificar Código</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

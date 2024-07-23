@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título da página -->
+    <title>Formulário Q1 - Possui um cachorro</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Estilos CSS -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #d9d9d9;
+        font-family: "Poppins", sans-serif !important;
+      }
+
+      div {
+        margin-bottom: 20px;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 400px;
+        padding: 50px;
+        border: solid black 1px;
+        border-radius: 10px;
+        background-color: #d9d9d9;
+        position: relative;
+        margin: auto;
+        margin-bottom: 2%;
+      }
+
+      #navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+
+      #game-container {
+        width: 90%;
+        max-width: 400px;
+        max-height: 200px;
+        border: solid black 1px;
+        border-radius: 10px;
+        background-color: #d9d9d9;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2%;
+        box-sizing: border-box;
+        z-index: 2;
+        box-shadow: 0px 10px 5px -2px #0000004e;
+      }
+
+      .logo {
+        order: 0;
+      }
+
+      .menu {
+        order: 1;
+      }
+
+      button,
+      .styled {
+        width: 75%;
+        background-color: #689d97;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10%;
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+
+      input[type="number"],
+      [type="date"] {
+        padding: 10px;
+        size: 100%;
+        width: 60%;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+
+      #number_other_pets1 {
+        width: 80%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+
+      .checkbox-container {
+        display: flex;
+      }
+
+      .form-section {
+        width: 100%;
+        display: none;
+      }
+
+      .visible {
+        display: block;
+      }
+
+      #no-vet {
+        margin-top: 10%;
+      }
+
+      .space {
+        padding: 2%;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1001;
+        opacity: 60%;
+        max-height: 50px;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      #menu-overlay {
+        display: none;
+        position: fixed;
+        top: 50px;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 1000;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      #menu-content {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 300px;
+        background-color: white;
+        opacity: 95%;
+        padding: 10px;
+        box-shadow: -2px 0px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+
+      .box {
+        display: flex;
+        margin-left: 65%;
+        width: 100px;
+        height: 100px;
+        position: relative;
+      }
+
+      .avatar::after {
+        opacity: 0;
+        font-family: FontAwesome;
+        content: "\f040";
+        color: #fff;
+        font-size: 2.5rem;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 4px;
+        left: 4px;
+        width: 92px;
+        height: 92px;
+        z-index: 2;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 350ms ease-in-out;
+      }
+
+      .avatar:hover::after {
+        opacity: 1;
+      }
+
+      .avatar {
+        box-sizing: border-box;
+        border: 4px solid silver;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      #personality,
+      #dogpros,
+      #deciders,
+      #cantdogdesc,
+      #telladopt {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+
+      #castracao,
+      #breed_type {
+        margin-left: 5%;
+      }
+
+      #vetcount {
+        width: 50%;
+      }
+      .footer-section {
+        position: relative;
+      }
+
+      .single-cta i {
+        color: #ff5e14;
+        font-size: 30px;
+        float: left;
+        margin-top: 8px;
+      }
+      .cta-text {
+        display: inline-block;
+      }
+      .cta-text h4 {
+        color: #689d97;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .img-footer {
+        margin-bottom: 30px;
+        margin-right: 5px;
+      }
+      footer {
+        color: #689d97;
+        border-top: 5px solid #689d97;
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid #2b5855;
+        position: relative;
+        padding: 10px 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="space">
+      <div class="header">
+        <img src="/images/logo.svg" alt="Logo Abandono Zero" class="logo" />
+        <div id="nav-icon3">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div id="menu-overlay" style="display: none">
+          <div id="menu-content" style="display: none">
+            <img src="/images/logo.svg" alt="Logo Abandono Zero" class="logo" />
+            <div class="box">
+              <label class="avatar" for="btn">
+                <img
+                  src="/images/profile-icon-9.png"
+                  alt=""
+                  class="profileIcon"
+                />
+              </label>
+              <input type="checkbox" id="btn" />
+              <div class="menu">
+                <a href="#"
+                  ><i class="fa fa-upload"> <span>upload</span></i></a
+                >
+                <br />
+                <a href="#"
+                  ><i class="fa fa-edit"> <span>edit</span></i></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-container">
+      <div id="barra"></div>
+    </div>
+    <div id="formPart1" class="form-section visible">
+      <div class="container">
+        <form id="form1">
+          <!-- Campo: Nome do cachorro -->
+          <div>
+            <label for="dogs_name">Nome do cachorro:</label>
+            <input
+              type="text"
+              id="dogs_name"
+              name="dogs_name"
+              placeholder="Nome do cachorro"
+              required
+            />
+          </div>
+
+          <!-- Campo: Sexo do cachorro -->
+          <div>
+            <label for="dogs_sex">Sexo do cachorro:</label>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="dogs_sex"
+                id="dogs_sex_macho"
+                value="Macho"
+              />
+              <label for="dogs_sex_macho">Macho</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="dogs_sex"
+                id="dogs_sex_femea"
+                value="Fêmea"
+              />
+              <label for="dogs_sex_femea">Fêmea</label>
+            </div>
+          </div>
+
+          <!-- Campo: Pertence a quem -->
+          <div>
+            <label for="tutor">Pertence a quem?</label>
+            <select name="tutor" id="tutor" required>
+              <option value="me">A mim</option>
+              <option value="family">A outro membro da família</option>
+              <option value="roomate">A meu/minha colega de quarto</option>
+              <option value="other">Outro</option>
+            </select>
+          </div>
+          <div>
+            <label for="castrated">É castrado?</label>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="castrated"
+                id="castrated_yes"
+                value="yes"
+              />
+              <label for="castrated_yes">Sim</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="castrated"
+                id="castrated_no"
+                value="no"
+              />
+              <label for="castrated_no">Não</label>
+            </div>
+          </div>
+          <div>
+            <label for="castration_date">Quando?</label>
+            <input type="date" id="castration_date" name="castration_date" />
+            <div class="input-inline">
+              <input
+                type="checkbox"
+                name="castration_date"
+                id="castration_date_unknown"
+                value="1111-11-11"
+              />
+              <label for="castration_date_unknown">Não sei</label>
+            </div>
+          </div>
+          <div>
+            <label for="time_w_dog"
+              >O cachorro está há quanto tempo com você?</label
+            >
+            <input
+              type="number"
+              id="time_w_dog"
+              name="time_w_dog"
+              min="0"
+              max="25"
+            />
+            anos.
+          </div>
+          <div>
+            <label for="first_dog">É o seu primeiro cão?</label>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="first_dog"
+                id="first_dog_yes"
+                value="yes"
+              />
+              <label for="first_dog_yes">Sim</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="first_dog"
+                id="first_dog_no"
+                value="no"
+              />
+              <label for="first_dog_no">Não</label>
+            </div>
+          </div>
+          <div>
+            <label for="number_pets"
+              >Há quantos outros pets vivendo com você?</label
+            >
+            <input
+              type="number"
+              id="number_pets"
+              name="number_pets"
+              min="0"
+              max="99"
+              placeholder="N° de pets"
+            />
+          </div>
+          <div>
+            <button type="button" class="styled" onclick="showNextForm(2)">
+              Próxima etapa
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="formPart2" class="form-section">
+      <div class="container">
+        <form id="form2">
+          <div>
+            <label for="breed">Qual a raça?</label>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="breed"
+                id="breed_defined"
+                value="defined"
+              />
+              <label for="breed_defined">Definida</label>
+            </div>
+            <div class="input-inline">
+              <label for="breed">Qual?</label>
+              <input
+                list="breed_list"
+                id="breed"
+                name="breed_defined_value"
+                placeholder="Insira raça"
+              />
+              <datalist id="breed_list">
+                <option value="Dálmata">Dálmata</option>
+                <option value="Pug">Pug</option>
+                <option value="Poodle">Poodle</option>
+              </datalist>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="breed"
+                id="breed_mix"
+                value="mixbreed"
+              />
+              <label for="breed_mix">Mistura de raças</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="breed"
+                id="breed_nobreed"
+                value="nobreed"
+              />
+              <label for="breed_nobreed">Sem raça definida</label>
+            </div>
+          </div>
+          <div>
+            <label for="origin">De onde conseguiu?</label>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_breeder"
+                value="Criador"
+              />
+              <label for="origin_breeder">Criador</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_acquaintance"
+                value="Conhecido"
+              />
+              <label for="origin_acquaintance">Conhecido</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_shelter"
+                value="Abrigo"
+              />
+              <label for="origin_shelter">Abrigo</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_homebred"
+                value="Nascido em casa"
+              />
+              <label for="origin_homebred">Nascido em casa</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_foundlost"
+                value="Encontrado perdido"
+              />
+              <label for="origin_foundlost">Encontrado perdido</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_petshop"
+                value="Loja de animais"
+              />
+              <label for="origin_petshop">Loja de animais</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_online"
+                value="On-line"
+              />
+              <label for="origin_online">On-line</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="origin"
+                id="origin_other"
+                value="Outro"
+              />
+              <label for="origin_other">Outro</label>
+              <input
+                type="text"
+                name="originother"
+                id="originother"
+                placeholder="Descreva"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label for="dpaid">Pagou para adquirir?</label>
+            <div class="input-inline">
+              <input type="radio" name="dpaid" id="paid_yes" value="yes" />
+              <label for="paid_yes">Sim</label>
+            </div>
+            <div class="input-inline">
+              <input type="radio" name="dpaid" id="paid_no" value="no" />
+              <label for="paid_no">Não</label>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="styled" onclick="showNextForm(3)">
+              Próxima etapa
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="formPart3" class="form-section">
+      <div class="container">
+        <form id="form3">
+          <div>
+            <label for="dogs_age"
+              >Com qual idade ele passou a morar com você?</label
+            >
+            <input
+              type="number"
+              id="dogs_age"
+              name="dogs_age"
+              min="0"
+              max="25"
+            />
+            anos.
+          </div>
+          <div>
+            <label for="dogs_personality"
+              >Descreva a personalidade do seu cão</label
+            >
+            <textarea
+              id="dogs_personality"
+              name="dogs_personality"
+              placeholder="O Afonso Jr. é um cão muito..."
+              rows="4"
+            ></textarea>
+          </div>
+
+          <!-- reasons To Have de Dog -->
+          <div>
+            <label for="dreason"
+              >Por que você tem esse cachorro? (Pode escolher mais de uma
+              opção.)</label
+            >
+            <div class="input-inline">
+              <input type="checkbox" name="kids" id="kids" value="true" />
+              <label for="kids">Companhia para crianças</label>
+            </div>
+            <div class="input-inline">
+              <input type="checkbox" name="adults" id="adults" value="true" />
+              <label for="adults">Acompanhamento para adulto(s)</label>
+            </div>
+            <div class="input-inline">
+              <input type="checkbox" name="looking" id="looking" value="true" />
+              <label for="looking">Por sua aparência</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="checkbox"
+                name="dogs_company"
+                id="dogs_company"
+                value="true"
+              />
+              <label for="dogs_company"
+                >Companhia para um cachorro que já mora na casa</label
+              >
+            </div>
+            <div class="input-inline">
+              <input
+                type="checkbox"
+                name="responsibility"
+                id="responsibility"
+                value="true"
+              />
+              <label for="responsibility"
+                >Ensinar responsabilidade às crianças</label
+              >
+            </div>
+            <div class="input-inline">
+              <input type="checkbox" name="friends" id="friends" value="true" />
+              <label for="friends">Porque amigos já tinham</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="checkbox"
+                name="protection"
+                id="protection"
+                value="true"
+              />
+              <label for="protection"
+                >Para proteção da residência, de pessoas.</label
+              >
+            </div>
+            <div class="input-inline">
+              <input
+                type="checkbox"
+                name="help_friend"
+                id="help_friend"
+                value="true"
+              />
+              <label for="help_friend"
+                >Para ajudar um amigo/conhecido que não conseguiu ficar com o
+                cachorro</label
+              >
+            </div>
+            <div class="input-inline">
+              <input type="checkbox" name="save" id="save" value="true" />
+              <label for="save">Para salvar sua vida</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="checkbox"
+                name="cuteness"
+                id="cuteness"
+                value="true"
+              />
+              <label for="cuteness"
+                >Ele/ela era fofo e estava disponível ou foi um encantamento
+                imediato.</label
+              >
+            </div>
+            <div class="input-inline">
+              <input type="checkbox" name="chose" id="chose" value="true" />
+              <label for="chose">Ele me escolheu</label>
+            </div>
+            <div class="input-inline">
+              <input type="checkbox" name="gift" id="gift" value="true" />
+              <label for="gift">Ele/ela foi um presente</label>
+            </div>
+            <div class="input-inline">
+              <input
+                type="checkbox"
+                name="dreason13"
+                id="dreason13"
+                value="true"
+              />
+              <label for="dreason13">Outro (Descreva):</label>
+              <input
+                type="text"
+                name="dreasonother"
+                id="dreasonother"
+                placeholder="Descreva"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <button type="button" class="styled" onclick="showNextForm(4)">
+              Próxima etapa
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="formPart4" class="form-section">
+      <div class="container">
+        <form id="form4">
+          <div>
+            <label for="characteristics"
+              >Quais características ele tinha que o agradaram?</label
+            >
+            <textarea
+              name="characteristics"
+              id="characteristics"
+              placeholder="O seu pelo macio, sua agitação para brincar..."
+              rows="4"
+            ></textarea>
+          </div>
+          <div>
+            <label for="deciders">Quem esteve envolvido na decisão?</label>
+            <textarea
+              name="involved_in_decision"
+              id="involved_in_decision"
+              placeholder="Minha mãe, meu irmão, meu marido..."
+              rows="4"
+            ></textarea>
+          </div>
+          <div>
+            <label for="cantdog"
+              >Você teve algum cão que não pode manter em casa? Se sim, por
+              favor descreva.</label
+            >
+            <div class="input-inline">
+              <input type="radio" name="cantdog" id="cantdogy" value="yes" />
+              <label for="cantdogy">Sim</label>
+            </div>
+            <div class="input-inline">
+              <input type="radio" name="cantdog" id="cantdogn" value="no" />
+              <label for="cantdogn">Não</label>
+            </div>
+            <textarea
+              name="couldnt_keep_a_dog_before"
+              id="couldnt_keep_a_dog_before"
+              placeholder="Não pude manter Afonso III pois..."
+              rows="4"
+            ></textarea>
+          </div>
+          <div>
+            <label for="vet">Você foi ao veterinário no último ano?</label>
+            <div class="input-inline">
+              <input type="radio" name="vet" id="vety" value="yes" />
+              <label for="vety">Sim</label>
+            </div>
+            <div class="input-inline">
+              <input type="radio" name="vet" id="vetn" value="no" />
+              <label for="vetn">Não</label>
+            </div>
+            <label for="number_of_vet_visits">Quantas vezes?</label>
+            <input
+              type="number"
+              name="number_of_vet_visits"
+              id="number_of_vet_visits"
+              min="0"
+            />
+          </div>
+          <div>
+            <label for="about_dog"
+              >Se outra pessoa fosse adotar o seu cachorro, o que você diria
+              sobre ele?</label
+            >
+            <textarea
+              name="about_dog"
+              id="about_dog"
+              placeholder="Insira o que você falaria sobre o cachorro aqui."
+              rows="4"
+            ></textarea>
+          </div>
+          <div>
+            <button type="submit" class="styled">Enviar formulário</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer class="footer-section">
+      <div class="footer-cta pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/address-book-solid.svg"
+                class="img-footer"
+                style="width: 60px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Entre em contato</h4>
+                <span
+                  ><a href="https://inspa.com.br/index.php/contato/"
+                    >Clique aqui!</a
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/phone-solid.svg"
+                class="img-footer"
+                style="width: 50px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Ligue aqui</h4>
+                <span>(51)98905-4953</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/envelope-solid.svg"
+                class="img-footer"
+                style="width: 50px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Envie um email</h4>
+                <span>contato@inspa.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Script JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const forms = document.querySelectorAll("form");
+
+        function saveFormDataToLocalStorage(formId) {
+          const form = document.getElementById(formId);
+          const formData = new FormData(form);
+          for (const [key, value] of formData.entries()) {
+            localStorage.setItem(key, value);
+          }
+        }
+
+        function loadFormDataFromLocalStorage() {
+          forms.forEach((form) => {
+            const elements = form.elements;
+            for (let i = 0; i < elements.length; i++) {
+              const element = elements[i];
+              if (element.name && localStorage.getItem(element.name)) {
+                if (element.type === "radio" || element.type === "checkbox") {
+                  element.checked =
+                    localStorage.getItem(element.name) === element.value;
+                } else {
+                  element.value = localStorage.getItem(element.name);
+                }
+              }
+            }
+          });
+        }
+
+        loadFormDataFromLocalStorage();
+
+        forms.forEach((form) => {
+          form.addEventListener("input", () => {
+            saveFormDataToLocalStorage(form.id);
+          });
+        });
+        window.showNextForm = function (part) {
+          const parts = ["formPart1", "formPart2", "formPart3", "formPart4"];
+          parts.forEach((p) => {
+            document.getElementById(p).classList.remove("visible");
+          });
+          document.getElementById(`formPart${part}`).classList.add("visible");
+
+          // DESBLOQUEIO DE ITENS
+          if (part > 2) {
+            unlocks.sleep = true;
+          }
+          unlockItems();
+
+          barProgress = (part - 1) / (parts.length - 1); // Calcula barra de progresso
+          window.scrollTo(0, 0);
+        };
+      });
+
+      document
+        .getElementById("form4")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const formData = {};
+          const forms = document.querySelectorAll("form");
+          forms.forEach((form) => {
+            new FormData(form).forEach((value, key) => {
+              formData[key] = value;
+            });
+          });
+
+          try {
+            const response = await fetch("/haveDogs", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            alert("Resposta adicionada com sucesso!");
+            console.log('Sucesso no modelo "Have_dog":', data);
+          } catch (error) {
+            console.error("Erro na submissão do formulário:", error);
+          }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <script>
+      var unlocks = {
+        food: true,
+        sleep: false,
+        pet: false,
+      };
+
+      // libera a besta
+      window.onload = function () {
+        mascotAwaken(["form1", "form2", "form3", "form4"], 36);
+      };
+    </script>
+  </body>
+</html>

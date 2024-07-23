@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Metadados -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título da página -->
+    <title>Formulário Q3 - Quer ter cachorro</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Estilos CSS -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+      body {
+        background-color: #d9d9d9;
+        font-family: "Poppins", sans-serif !important;
+        padding-top: 5%;
+      }
+
+      div {
+        margin-bottom: 5px;
+        /* Adiciona um espaçamento de 20 pixels entre os elementos */
+      }
+
+      .container {
+        width: 90%;
+        /* Define a largura máxima */
+        max-width: 450px;
+        /* Define a largura máxima para 450px */
+        padding: 50px;
+        border: solid black 1px;
+        border-radius: 10px;
+        background-color: #d9d9d9;
+        position: relative;
+        margin: auto;
+        /* Centraliza horizontalmente */
+        margin-bottom: 2%;
+      }
+
+      button,
+      .styled {
+        width: 75%;
+        background-color: #689d97;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10%;
+        font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1001;
+        opacity: 60%;
+        max-height: 50px;
+        align-items: center;
+        padding: 10px 20px;
+      }
+
+      #game-container {
+      width: 90%;
+      max-width: 400px;
+      max-height: 200px;
+      border: solid black 1px;
+      border-radius: 10px;
+      background-color: #d9d9d9;
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2%;
+      box-sizing: border-box;
+      z-index: 2;
+      box-shadow: 0px 10px 5px -2px #0000004e;
+    }
+
+      #barra {
+        width: 70%;
+        padding: 5%;
+        margin: 0%;
+        border: solid black 1px;
+        border-radius: 10px;
+      }
+
+      .logo {
+        order: 0;
+        /* Coloca o menu à esquerda */
+      }
+
+      .menu {
+        order: 1;
+        /* Coloca o logo à direita */
+      }
+
+      input {
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+
+      #wanted_personality {
+        margin-top: 1%;
+        resize: none;
+      }
+
+      .contact {
+        bottom: 0;
+        float: left;
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
+
+      .legal-information {
+        bottom: 0;
+        float: right;
+        margin-bottom: 10px;
+        margin-right: 10px;
+      }
+
+      .form-section {
+        width: 100%;
+        display: none;
+      }
+
+      .visible {
+        display: block;
+      }
+
+      #porte {
+        margin-left: 5%;
+      }
+
+      #fur {
+        margin-left: 5%;
+      }
+
+      #gender {
+        margin-left: 5%;
+      }
+
+      #raça {
+        margin-left: 5%;
+      }
+
+      #pensou {
+        margin-left: 5%;
+      }
+      textarea {
+        padding: 10px;
+        size: 60%;
+        width: 100%;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+      input[type="text"] {
+        padding: 10px;
+        size: 100%;
+        width: 100%;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+
+      input[type="number"],
+      [type="date"] {
+        padding: 10px;
+        size: 100%;
+        width: 60%;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid black;
+        resize: none;
+      }
+      .footer-section {
+        position: relative;
+      }
+
+      .single-cta i {
+        color: #ff5e14;
+        font-size: 30px;
+        float: left;
+        margin-top: 8px;
+      }
+      .cta-text {
+        display: inline-block;
+      }
+      .cta-text h4 {
+        color: #689d97;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .img-footer {
+        margin-bottom: 30px;
+        margin-right: 5px;
+      }
+      
+      footer {
+            color: #689D97;
+            border-top: 5px solid #689D97;
+            text-align: center;
+            width: 100%;
+            border-top: 1px solid #2B5855;
+            position: relative;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <img src="/images/logo.svg" alt="Logo Abandono Zero" class="logo" />
+      <div id="nav-icon3">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="menu-overlay" style="display: none">
+        <div id="menu-content" style="display: none">
+          <img src="/images/logo.svg" alt="Logo Abandono Zero" class="logo" />
+          <div class="box">
+            <label class="avatar" for="btn">
+              <img
+                src="/images/profile-icon-9.png"
+                alt=""
+                class="profileIcon"
+              />
+            </label>
+            <input type="checkbox" id="btn" />
+            <div class="menu">
+              <a href="#"
+                ><i class="fa fa-upload"> <span>upload</span></i></a
+              >
+              <br />
+              <a href="#"
+                ><i class="fa fa-edit"> <span>edit</span></i></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-container">
+      <!-- <div id="barra"></div> -->
+    </div>
+
+    <div id="formPart1" class="form-section visible">
+      <!-- Contêiner do formulário -->
+      <div class="container">
+        <!-- Formulário -->
+        <form id="form1">
+          <!-- Pergunta sobre características físicas do cão -->
+          <p>
+            Quais são as características físicas do cão que você imagina
+            conviver?
+          </p>
+          <!-- Opções de porte -->
+          <label>Porte</label>
+          <div class="group">
+            <!-- Opção: Pequeno -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="dogs_size"
+                value="Pequeno"
+                id="porte"
+                required
+              />
+              <label for="dogs_size">Pequeno</label>
+            </div>
+            <!-- Opção: Médio -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="dogs_size"
+                value="Médio"
+                id="porte"
+                required
+              />
+              <label for="dogs_size">Médio</label>
+            </div>
+            <!-- Opção: Grande -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="dogs_size"
+                value="Grande"
+                id="porte"
+                required
+              />
+              <label for="dogs_size">Grande</label>
+            </div>
+          </div>
+          <!-- Pergunta sobre pelagem -->
+          <label>Pelagem</label>
+          <div class="group">
+            <!-- Opção: Curta -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="fur_length"
+                value="Curta"
+                id="fur"
+                required
+              />
+              <label for="fur_length">Curta</label>
+            </div>
+            <!-- Opção: Longa -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="fur_length"
+                value="Longa"
+                id="fur"
+                required
+              />
+              <label for="fur_length">Longa</label>
+            </div>
+          </div>
+          <!-- Pergunta sobre preferência de cor -->
+          <label for="fur_color">Preferência por cor:</label>
+          <input type="text" name="fur_color" id="fur_color" required /> <br />
+          <br />
+          <!-- Pergunta sobre sexo -->
+          <label>Sexo</label>
+          <div class="group">
+            <!-- Opção: Macho -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="dogs_sex"
+                value="Macho"
+                id="gender"
+                required
+              />
+              <label for="dogs_sex">Macho</label>
+            </div>
+            <!-- Opção: Fêmea -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="dogs_sex"
+                value="Fêmea"
+                id="gender"
+                required
+              />
+              <label for="dogs_sex">Fêmea</label>
+            </div>
+          </div>
+          <!-- Pergunta sobre raça -->
+          <label>De raça</label>
+          <div class="group">
+            <!-- Opção: Sim -->
+            <div class="input-inline">
+              <input type="radio" name="breed" value="Sim" id="raça" required />
+              <label for="breed">Sim</label>
+            </div>
+            <!-- Opção: Sem raça definida -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="breed"
+                value="Sem raça definida"
+                id="raça"
+                required
+              />
+              <label for="breed">Sem raça definida</label>
+            </div>
+            <!-- Opção: Não sei -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="breed"
+                value="Não sei"
+                id="raça"
+                required
+              />
+              <label for="breed">Não sei</label>
+            </div>
+          </div>
+          <!-- Pergunta sobre idade -->
+          <label for="dogs_age">Idade do cão (em anos):</label>
+          <input type="number" name="dogs_age" id="dogs_age" required /><br />
+
+          <button type="button" class="styled" onclick="showNextForm(2)">
+            Próxima etapa
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="formPart2" class="form-section">
+        <div class="container">
+            <form id="form2">
+                <!-- Pergunta sobre motivos -->
+                <p>Por que você gostaria de conviver com um cão?</p>
+                <div class="group">
+                    <!-- Opções de motivo -->
+                    <div class="input-inline">
+                        <input type="checkbox" name="kids_company" value="true">
+                        <label for="kids_company">Companhia para crianças</label>
+                    </div>
+                    <div class="input-inline">
+                        <input type="checkbox" name="adults_company" value="true">
+                        <label for="adults_company">Acompanhamento para adulto(s)</label>
+                    </div>
+                    <div class="input-inline">
+                        <input type="checkbox" name="parents_had" value="true">
+                        <label for="parents_had">Seus pais tinham/tem</label>
+                    </div>
+                    <div class="input-inline">
+                        <input type="checkbox" name="responsibility" value="true">
+                        <label for="responsibility">Ensinar responsabilidade às crianças</label>
+                    </div>
+                    <div class="input-inline">
+                        <input type="checkbox" name="friends_have" value="true">
+                        <label for="friends_have">Porque amigos já têm</label>
+                    </div>
+                    <div class="input-inline">
+                        <input type="checkbox" name="protection" value="true">
+                        <label for="protection">Para proteção da residência, de pessoas</label>
+                    </div>
+                    <div class="input-inline">
+                        <input type="checkbox" name="met_media" value="true">
+                        <label for="met_media">Conheceu na TV, filmes, mídias sociais</label>
+                    </div>
+                    <div class="input-inline">
+                        <input type="checkbox" name="others" value="true">
+                        <label for="others">Outros, descreva os motivos/circunstâncias</label>
+                    </div>
+                    <!-- Campo de texto para outros motivos -->
+                    <input type="text" name="other_detail">
+                </div>
+
+                <div class="input-inline">
+                    <p>Já pensou em um nome para ele/ela?</p>
+
+                    <div class="input-inline">
+                        <input type="radio" name="already_have_a_name" value="Sim" required>
+                        <label for="already_have_a_name">Sim</label>
+                    </div>
+
+                    <div class="input-inline">
+                        <label for="possible_name" id="pensou">Nome:</label><br>
+                        <input type="text" name="possible_name" id="possible_name">
+                    </div>
+
+                    <div class="input-inline">
+                        <label for="name_reason" id="pensou">Qual o motivo para a escolha do nome?</label><br>
+                        <input type="text" name="name_reason" id="name_reason">
+                    </div>
+
+            <!-- Opção: Não sei -->
+            <div class="input-inline">
+              <input
+                type="radio"
+                name="already_have_a_name"
+                value="Não"
+                required
+                id="nao-pensou"
+              />
+              <label for="already_have_a_name">Não</label>
+            </div>
+
+            <div>
+              <button type="button" class="styled" onclick="showNextForm(3)">
+                Próxima etapa
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="formPart3" class="form-section">
+        <div class="container">
+            <form id="form3">
+                <!-- Pergunta sobre intenção de compra ou adoção -->
+                <label>Pretende</label>
+                <div class="group">
+                    <!-- Opção: Comprar -->
+                    <div class="input-inline">
+                        <input type="radio" name="acquire_intention" value="Comprar" required>
+                        <label for="acquire_intention">Comprar</label>
+                    </div>
+                    <!-- Opção: Adotar -->
+                    <div class="input-inline">
+                        <input type="radio" name="acquire_intention" value="Adotar" required>
+                        <label for="acquire_intention">Adotar</label>
+                    </div>
+                </div>
+                <!-- Pergunta sobre data de inclusão na casa -->
+                <label>Já sabe quando irá incluir ela/ele em sua casa?</label>
+                <div class="group">
+                    <!-- Opção: Sim -->
+                    <div class="input-inline">
+                        <input type="radio" name="bringing_date" value="Sim" required>
+                        <label for="bringing_date">Sim</label>
+                    </div>
+                    <!-- Opção: Não -->
+                    <div class="input-inline">
+                        <input type="radio" name="bringing_date" value="Não" required>
+                        <label for="bringing_date">Não</label>
+                    </div>
+                </div>
+                <!-- Pergunta sobre personalidade/comportamento desejado -->
+                <label for="wanted_personality">Gostaria que tivesse qual tipo de
+                    personalidade/comportamento?</label><br>
+                <textarea name="wanted_personality" id="wanted_personality" rows="4" required></textarea><br>
+                <!-- Pergunta sobre pesquisa de despesas mensais -->
+                <label>Pesquisou sobre a média das despesas mensais com o pet?</label>
+                <div class="group">
+                    <!-- Opção: Sim -->
+                    <div class="input-inline">
+                        <input type="radio" name="search_expenses" value="Sim" required>
+                        <label for="search_expenses">Sim</label>
+                    </div>
+                    <!-- Opção: Não -->
+                    <div class="input-inline">
+                        <input type="radio" name="search_expenses" value="Não" required>
+                        <label for="search_expenses">Não</label>
+                    </div>
+                </div>
+                <!-- Pergunta sobre valor estimado das despesas mensais -->
+                <label for="expense_value">Qual o valor estimado das despesas mensais (em reais)?</label>
+                <input type="number" name="expense_value" id="expense_value" required><br>
+                <!-- Botão de envio -->
+                <button type="submit" class="styled" id="botao-final">Enviar Formulário</button>
+
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer-section">
+      <div class="footer-cta pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/address-book-solid.svg"
+                class="img-footer"
+                style="width: 60px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Entre em contato</h4>
+                <span
+                  ><a href="https://inspa.com.br/index.php/contato/"
+                    >Clique aqui!</a
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/phone-solid.svg"
+                class="img-footer"
+                style="width: 50px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Ligue aqui</h4>
+                <span>(51)98905-4953</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <img
+                src="/images/envelope-solid.svg"
+                class="img-footer"
+                style="width: 50px; height: 120px"
+              />
+              <div class="cta-text">
+                <h4>Envie um email</h4>
+                <span>contato@inspa.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const noName = document.getElementById("nao-pensou");
+        const name_reason = document.getElementById("name_reason");
+        const possible_name = document.getElementById("possible_name");
+        const pensou = document.getElementById("pensou");
+        const motivo = document.getElementById("motivo");
+        const didnt_think = document.getElementById("didnt_think");
+
+        noName.addEventListener("change", function () {
+          if (noName.checked) {
+            didnt_think.style.display = "none";
+            didnt_think.required = false;
+            didnt_think.value = "";
+          }
+        });
+      }),
+        document.addEventListener("DOMContentLoaded", function () {
+          const forms = document.querySelectorAll("form");
+
+          function saveFormDataToLocalStorage(formId) {
+            const form = document.getElementById(formId);
+            const formData = new FormData(form);
+            for (const [key, value] of formData.entries()) {
+              localStorage.setItem(key, value);
+            }
+          }
+
+            function loadFormDataFromLocalStorage() {
+                forms.forEach((form) => {
+                    const elements = form.elements;
+                    for (let i = 0; i < elements.length; i++) {
+                        const element = elements[i];
+                        if (element.name && localStorage.getItem(element.name)) {
+                            if (element.type === "radio" || element.type === "checkbox") {
+                                element.checked = localStorage.getItem(element.name) === element.value;
+                            } else {
+                                element.value = localStorage.getItem(element.name);
+                            }
+                        }
+                    }
+                });
+            }
+
+          loadFormDataFromLocalStorage();
+
+            forms.forEach((form) => {
+                form.addEventListener("input", () => {
+                    saveFormDataToLocalStorage(form.id);
+                });
+            });
+
+          window.showNextForm = function (part) {
+            const parts = ["formPart1", "formPart2", "formPart3"];
+            parts.forEach((p) => {
+              document.getElementById(p).classList.remove("visible");
+            });
+            document.getElementById(`formPart${part}`).classList.add("visible");
+
+            // DESBLOQUEIO DE ITENS
+            if (part>1) {unlocks.sleep = true};
+            unlockItems();
+
+            barProgress = (part - 1) / (parts.length - 1); // Calcula barra de prorgresso
+            window.scrollTo(0, 0);
+          };
+        });
+
+        document.getElementById("form3").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const formData = {};
+            const forms = document.querySelectorAll("form");
+            forms.forEach((form) => {
+                new FormData(form).forEach((value, key) => {
+                    formData[key] = value;
+                });
+            });
+
+            try {
+                const response = await fetch("/wantDogs", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+                const data = await response.json();
+                alert("Resposta adicionada com sucesso!");
+                console.log('Sucesso no modelo "want_dog":', data);
+                localStorage.clear(); // Limpa o localStorage após o envio bem-sucedido
+            } catch (error) {
+                console.error('Erro ao criar registro no modelo "want_dog":', error);
+                alert("Erro ao enviar formulário: " + error.message);
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <script>
+      var unlocks = {
+        food: true,
+        sleep: false,
+        pet: false,
+      };
+      // libera a besta
+      window.onload = function () {
+        mascotAwaken(["form1", "form2", "form3"], 15);
+      };
+    </script>
+  </body>
+</html>

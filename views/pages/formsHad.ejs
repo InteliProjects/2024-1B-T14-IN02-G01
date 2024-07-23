@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulário Q2 - Já teve cachorro</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+
+    body {
+      background-color: #d9d9d9;
+      font-family: "Poppins", sans-serif !important;
+    }
+
+    div {
+      margin-bottom: 20px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      padding: 50px;
+      border: solid black 1px;
+      border-radius: 10px;
+      background-color: #d9d9d9;
+      position: relative;
+      margin: auto;
+      margin-bottom: 2%;
+    }
+
+    #game-container {
+      width: 90%;
+      max-width: 400px;
+      max-height: 200px;
+      border: solid black 1px;
+      border-radius: 10px;
+      background-color: #d9d9d9;
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2%;
+      box-sizing: border-box;
+      z-index: 2;
+      box-shadow: 0px 10px 5px -2px #0000004e;
+    }
+
+
+    .logo {
+      order: 0;
+    }
+
+    .menu {
+      order: 1;
+    }
+
+    button,
+    .styled {
+      width: 75%;
+      background-color: #689d97;
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10%;
+      font-size: 16px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      size: 100%;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #fff;
+      border: 1px solid black;
+      resize: none;
+    }
+
+    input[type="number"], [type="date"] {
+      padding: 10px;
+      size: 100%;
+      width: 60%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #fff;
+      border: 1px solid black;
+      resize: none;
+    }
+
+    .checkbox-container {
+      display: flex;
+    }
+
+    .form-section {
+      width: 100%;
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    #no-vet {
+      margin-top: 10%;
+    }
+
+    footer {
+            color: #689D97;
+            border-top: 5px solid #689D97;
+            text-align: center;
+            width: 100%;
+            border-top: 1px solid #2B5855;
+            position: relative;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+
+    .footer-links {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .left-link,
+    .right-link {
+      flex: 1;
+      text-align: center;
+    }
+
+    .left-link {
+      text-align: left;
+    }
+
+    .right-link {
+      text-align: right;
+    }
+
+    .space {
+      padding: 2%;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1001;
+      opacity: 60%;
+      max-height: 50px;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    #menu-overlay {
+      display: none;
+      position: fixed;
+      top: 50px;
+      right: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #menu-content {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      width: 300px;
+      background-color: white;
+      opacity: 95%;
+      padding: 10px;
+      box-shadow: -2px 0px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .box {
+      display: flex;
+      margin-left: 65%;
+      width: 100px;
+      height: 100px;
+      position: relative;
+    }
+
+    .avatar::after {
+      opacity: 0;
+      font-family: FontAwesome;
+      content: "\f040";
+      color: #fff;
+      font-size: 2.5rem;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 4px;
+      left: 4px;
+      width: 92px;
+      height: 92px;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 350ms ease-in-out;
+    }
+
+    .avatar:hover::after {
+      opacity: 1;
+    }
+
+    .avatar {
+      box-sizing: border-box;
+      border: 4px solid silver;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .catsdogs {
+      display: flex;
+      flex-direction: row;
+      gap: 2%;
+    }
+
+    #breed_type, #vet-while, #castration_age{
+      margin-left: 10%;
+    }
+
+    #other_reason_detail, #involved_decision_detail{
+      margin-left: 5%
+    }
+
+    textarea{
+      padding: 10px;
+      size: 100%;
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #fff;
+      border: 1px solid black;
+      resize: none;
+    }
+    .footer-section {
+      position: relative;
+    }
+
+.single-cta i {
+  color: #ff5e14;
+  font-size: 30px;
+  float: left;
+  margin-top: 8px;
+}
+.cta-text {
+  display: inline-block;
+}
+.cta-text h4 {
+  color: #689D97;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.img-footer {
+  margin-bottom: 30px;
+  margin-right: 5px;
+}
+
+  </style>
+</head>
+
+
+<body>
+  <div class="space">
+    <div class="header">
+      <img src="/images/logo.svg" alt="Logo Abandono Zero" class="logo" />
+      <div id="nav-icon3">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="menu-overlay" style="display: none;">
+        <div id="menu-content" style="display: none;">
+          <img src="/images/logo.svg" alt="Logo Abandono Zero" class="logo" />
+          <div class="box">
+            <label class="avatar" for="btn">
+              <img src="/images/profile-icon-9.png" alt="" class="profileIcon" />
+            </label>
+            <input type="checkbox" id="btn" />
+            <div class="menu">
+              <a href="#"><i class="fa fa-upload"> <span>upload</span></i></a>
+              <br />
+              <a href="#"><i class="fa fa-edit"> <span>edit</span></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-container">
+    <!-- <div id="barra"></div> -->
+  </div>
+
+  <div id="formPart1" class="form-section visible">
+    <div class="container">
+      <form id="form1">
+        <div>
+          <label for="dogs_name">Qual é o nome do cachorro?</label><br>
+          <input type="text" id="dogs_name" name="dogs_name" required />
+        </div>
+        <div>
+          <label for="belonging">Pertenceu a você ou a outro membro da família?</label><br>
+          <input type="text" name="belonging" id="belonging">
+        </div>
+        <div>
+          <label for="dogs_personality">Como descreveria a personalidade do seu cão?</label><br>
+          <input type="text" id="dogs_personality" name="dogs_personality" required />
+        </div>
+        <div>
+          <label for="how_much_stayed">Ele esteve com você durante quanto tempo?</label><br>
+          <input type="number" id="how_much_stayed" name="how_much_stayed" required /> anos.
+        </div>
+        <div>
+          <label for="first_dog">Foi seu primeiro cão?</label><br>
+          <input type="text" id="first_dog" name="first_dog" required />
+        </div>
+        <label>Quantos outros pets tinham na casa?</label><br />
+        <div class="catsdogs">
+          <div>
+            <label for="number_dogs">Cães</label>
+            <input type="number" id="number_dogs" name="number_dogs" min="0" required /><br />
+          </div>
+          <div>
+            <label for="number_cats">Gatos</label>
+            <input type="number" id="number_cats" name="number_cats" min="0" required />
+
+          </div>
+        </div>
+        <div>
+          <button type="button" class="styled" onclick="showNextForm(2)">Próxima etapa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="formPart2" class="form-section">
+    <div class="container">
+      <form id="form2">
+        <label>Quantos anos tinha o seu Pet ao ser incluído na casa?</label><br>
+          <input type="radio" id="time1" name="inclusion_year" value="3 meses" required />
+          <label for="time1">3 meses</label><br>
+          <input type="radio" id="time2" name="inclusion_year" value="3 a 6 meses" required />
+          <label for="time2">3 a 6 meses</label><br>
+          <input type="radio" id="time3" name="inclusion_year" value="6 a 9 meses" required />
+          <label for="time3">6 a 9 meses</label><br>
+          <input type="radio" id="time4" name="inclusion_year" value="9 a 12 meses" required />
+          <label for="time4">9 a 12 meses</label><br>
+          <input type="radio" id="time5" name="inclusion_year" value="1 a 2 anos" required />
+          <label for="time5">1 a 2 anos</label><br>
+          <input type="radio" id="time6" name="inclusion_year" value="2 anos ou mais" required />
+          <label for="time6">2 anos ou mais</label><br>
+          <input type="radio" id="time7" name="inclusion_year" value="Não sei" required />
+          <label for="time7">Não sei</label>
+        <br>
+        <div>
+          <label>Ele era castrado?</label><br />
+          <input type="radio" id="yes-castrated" name="castrated" value="Sim" required />
+          <label for="yes-castrated">Sim</label>
+          <br />
+          <div id="manyMonths">
+            <label for="castration_age" id="castration_age">Quantos meses ele/ela tinha aproximadamente ao ser castrado?</label>
+            <br />
+            <input type="number" id="castration_age" name="castration_age" required />
+          </div>
+          <input type="radio" id="no-castrated" name="castrated" value="Não" required />
+          <label for="no-castrated">Não</label>
+          <br />
+          <input type="radio" id="dont-know-castrated" name="castrated" value="Não sei" required />
+          <label for="dont-know-castrated">Não sei</label>
+        </div>
+        <div>
+          <button type="button" class="styled" onclick="showNextForm(3)">Próxima etapa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="formPart3" class="form-section">
+    <div class="container">
+      <form id="form3">
+        <div>
+          <label>Qual a raça do Pet?</label><br />
+          <input type="radio" id="defined-race" name="breed" value="Raça definida" required />
+          <label for="defined-race">Raça definida</label>
+          <br />
+            <div id="breed-details" style="display: none;">
+              <label for="breed_type" id="breed_type">Qual?</label>
+              <input type="text" id="breed_type" name="breed_type" required />
+            </div>
+          <input type="radio" id="mixed-breed" name="breed" value="Mistura de raça" required />
+          <label for="mixed-breed">Mistura de raça</label>
+          <br />
+          <input type="radio" id="no-defined-breed" name="breed" value="Sem raça definida" required />
+          <label for="no-defined-breed">Sem raça definida</label>
+          <br />
+          <input type="radio" id="dont-know-breed" name="breed" value="Não sei" required />
+          <label for="dont-know-breed">Não sei</label>
+        </div>
+        <div>
+          <label>De onde veio o cachorro?</label><br />
+          <input type="radio" id="creator" name="dogs_origin" value="Criador" required />
+          <label for="creator">Criador</label>
+          <br />
+          <input type="radio" id="known" name="dogs_origin" value="Conhecido" required />
+          <label for="known">Conhecido</label>
+          <br />
+          <input type="radio" id="shelter" name="dogs_origin" value="Abrigo" required />
+          <label for="shelter">Abrigo</label>
+          <br />
+          <input type="radio" id="born-home" name="dogs_origin" value="Nascido em casa" required />
+          <label for="born-home">Nascido em casa</label>
+          <br />
+          <input type="radio" id="found" name="dogs_origin" value="Encontrado como perdido" required />
+          <label for="found">Encontrado como perdido</label>
+          <br />
+          <input type="radio" id="shop" name="dogs_origin" value="Loja de animais" required />
+          <label for="shop">Loja de animais</label>
+          <br />
+          <input type="radio" id="online" name="dogs_origin" value="On-line" required />
+          <label for="online">On-line</label>
+          <br />
+          <input type="radio" id="other" name="dogs_origin" value="Outro" required />
+          <label for="other">Outro</label>
+        </div>
+        <div>
+          <label>Qual o valor pago pelo Pet?</label><br />
+          <input type="radio" id="free" name="cost_to_acquire" value="Sem custo" required />
+          <label for="free">Sem custo</label>
+          <br />
+          <input type="radio" id="50" name="cost_to_acquire" value="R$ 50 – 150 reais" required />
+          <label for="50">R$ 50 – 150 reais</label>
+          <br />
+          <input type="radio" id="150" name="cost_to_acquire" value="R$ 150 – 300 reais" required />
+          <label for="150">R$ 150 – 300 reais</label>
+          <br />
+          <input type="radio" id="300" name="cost_to_acquire" value="R$ 300 – 500 reais" required />
+          <label for="300">R$ 300 – 500 reais</label>
+          <br />
+          <input type="radio" id="500" name="cost_to_acquire" value="R$ 500 – 1000 reais" required />
+          <label for="500">R$ 500 – 1000 reais</label>
+          <br />
+          <input type="radio" id="1000" name="cost_to_acquire" value="R$ 1000 – 2000 reais" required />
+          <label for="1000">R$ 1000 – 2000 reais</label>
+          <br />
+          <input type="radio" id="2000" name="cost_to_acquire" value="R$ 2000 – 4000 reais" required />
+          <label for="2000">R$ 2000 – 4000 reais</label>
+          <br />
+          <input type="radio" id="5000" name="cost_to_acquire" value="R$ 5000 ou mais" required />
+          <label for="5000">R$ 5000 ou mais</label>
+          <br />
+          <input type="radio" id="dont-know" name="cost_to_acquire" value="Não sei" required />
+          <label for="dont-know">Não sei</label>
+        </div>
+        <div>
+          <button type="button" class="styled" onclick="showNextForm(4)">Próxima etapa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="formPart4" class="form-section">
+    <div class="container">
+      <form id="form4">
+        <div>
+          <label>Por que você comprou, adotou ou incluiu o Pet?</label><br />
+          <div class="checkbox-container">
+            <input type="checkbox" id="kids" name="kids" value="true" />
+            <label for="kids">Companhia para crianças</label>
+          </div>
+
+          <div class="checkbox-container">
+            <input type="checkbox" id="adults" name="adults"
+              value="true" />
+            <label for="adults">Acompanhamento para adulto(s)</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="looking" name="looking" value="true" />
+            <label for="looking">Por sua aparência</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="dogs_company" name="dogs_company" value="true" />
+            <label for="dogs_company">Companhia para outro cachorro</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="responsibility" name="responsibility"
+              value="true" />
+            <label for="responsibility">Ensinar responsabilidade às crianças</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="protection" name="protection"
+              value="true" />
+            <label for="protection">Para proteção de residência de pessoas</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="help_friend" name="help_friend"
+              value="true" />
+            <label for="help_friend">Para ajudar um amigo/conhecido que não conseguiu ficar com o cachorro</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="cuteness" name="cuteness"
+              value="true" />
+            <label for="cuteness">Ele/ela era fofo e estava disponível ou foi um encantamento imediato.</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="gift" name="gift" value="true" />
+            <label for="gift">Ele/ela foi um presente</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="save_life" name="save_life" value="true" />
+            <label for="save_life">Para salvar sua vida</label>
+          </div>
+          
+          <div class="checkbox-container">
+            <input type="checkbox" id="other_reason" name="other_reason"
+              value="true" />
+            <label for="other_reason">Outros, descreva os motivos/circunstâncias</label>
+          </div>
+          <input type="text" id="other_reason_detail" name="other_reason_detail" />
+        </div>
+        <br>
+        <div>
+          <label for="dogs_characteristics">Quais características que o Pet tinha que o levaram a selecioná-lo ou
+            concordar em mantê-lo? </label><br>
+          <input type="text" id="dogs_characteristics" name="dogs_characteristics" required />
+        </div>
+        <br>
+        <div>
+          <label>Quem esteve envolvido na decisão?</label><br />
+          <input type="radio" id="you" name="involved_decision" value="Só você estava" required />
+          <label for="you">Só você estava</label>
+          <br />
+          <input type="radio" id="partner" name="involved_decision" value="Seu companheiro (a)" required />
+          <label for="partner">Seu companheiro (a)</label>
+          <br />
+          <input type="radio" id="family" name="involved_decision" value="Toda a família (incluindo crianças)"
+           
+            required />
+          <label for="family">Toda a família (incluindo crianças)</label>
+          <br />
+          <input type="radio" id="parentes" name="involved_decision" value="Seus pais" required />
+          <label for="parentes">Seus pais</label>
+          <br />
+          <input type="radio" id="other-describe" name="involved_decision" value="Outro, descreva" required />
+          <label for="other-describe">Outro, descreva</label>
+          <br />
+          <input type="text" id="involved_decision_detail" name="involved_decision_detail" style="display: none;" />
+        </div>
+        <div>
+          <button type="button" class="styled" onclick="showNextForm(5)">Próxima etapa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="formPart5" class="form-section">
+    <div class="container">
+      <form id="form5">
+        <div>
+          <label for="favorite_things_first_weeks">Pensando nas primeiras semanas depois da inclusão o que você gostava
+            mais nele/ela?</label><br>
+          <input type="text" id="favorite_things_first_weeks" name="favorite_things_first_weeks" required />
+        </div>
+        <div>
+          <label for="dont_liked_things">O que você não gostava nele(a)?</label><br>
+          <textarea id="dont_liked_things" name="dont_liked_things" rows="3" required></textarea>
+        </div>
+        <div>
+          <label>O Pet foi ao veterinário enquanto esteve com você?</label><br />
+          <input type="radio" id="yes-vet" name="vet_visits" value="Sim" required />
+          <label for="yes-vet">Sim</label><br>
+              <div id="vet-details" style="display: none;">
+                <label for="number_of_vet_visits">Quantas vezes?</label>
+                <input type="number" id="number_of_vet_visits" name="number_of_vet_visits" min="0" /><br>
+                <label for="visit_reason">Qual o motivo?</label>
+                <textarea id="visit_reason" name="visit_reason" rows="3"></textarea>
+              </div>
+          <input type="radio" id="no-vet" name="vet_visits" value="Não" required />
+          <label for="no-vet">Não</label><br>
+        </div>
+        <div>
+          <button type="button" class="styled" onclick="showNextForm(6)">Próxima etapa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="formPart6" class="form-section">
+    <div class="container">
+      <form id="form6">
+        <div>
+          <label for="stopped_live_with_dog">Qual a data em que você deixou de conviver com ele?</label><br>
+          <input type="date" id="stopped_live_with_dog" name="stopped_live_with_dog">
+        </div>
+        <div>
+          <label for="stopped_live_dogs_age">Qual a idade dele na época?</label><br>
+          <input type="number" id="stopped_live_dogs_age" name="stopped_live_dogs_age" min="0">
+        </div>
+        <div>
+          <label for="reason_stopped_living">Por quais motivos deixou de conviver com ele?</label><br>
+          <input type="text" id="reason_stopped_living" name="reason_stopped_living">
+        </div>
+        <div>
+          <label>Você conviveria com um novo cão?</label><br>
+          <input type="radio" id="yes-other-dog" name="would_live_with_other_dog" value="Sim" />
+          <label for="yes-other-dog">Sim. Por que?</label><br>
+          <input type="text" name="reason_would_live_with_other_dog" id="reason_would_live_with_other_dog" style="display:none;"><br>
+          <input type="radio" id="no-other-dog" name="would_live_with_other_dog" value="Não" />
+          <label for="no-other-dog">Não. Por que?</label><br>
+          <input type="text" name="reason_would_live_with_other_dog" id="reasonreason_would_live_with_other_dog">
+        </div>
+        <button type="submit" class="styled" id="botao-final">Enviar formulário</button>
+    </div>
+    </form>
+  </div>
+  </div>
+
+  <footer class="footer-section">
+        <div class="footer-cta pt-5 pb-5">
+            <div class="row">
+                <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="single-cta">
+                      <img src="/images/address-book-solid.svg" class="img-footer" style="width: 60px; height: 120px;"/>
+                        <div class="cta-text">
+                            <h4>Entre em contato</h4>
+                            <span><a href="https://inspa.com.br/index.php/contato/">Clique aqui!</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="single-cta">
+                        <img src="/images/phone-solid.svg" class="img-footer" style="width: 50px; height: 120px;"/>
+                        <div class="cta-text">
+                            <h4>Ligue aqui</h4>
+                            <span>(51)98905-4953</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4 mb-30">
+                    <div class="single-cta">
+                        <img src="/images/envelope-solid.svg" class="img-footer" style="width: 50px; height: 120px;"/>
+                        <div class="cta-text">
+                            <h4>Envie um email</h4>
+                            <span>contato@inspa.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </footer>
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const forms = document.querySelectorAll("form");
+
+  function saveFormDataToLocalStorage(formId) {
+    const form = document.getElementById(formId);
+    const formData = new FormData(form);
+    for (const [key, value] of formData.entries()) {
+      localStorage.setItem(key, value);
+    }
+  }
+
+  function loadFormDataFromLocalStorage() {
+    forms.forEach((form) => {
+      const elements = form.elements;
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i];
+        if (element.name && localStorage.getItem(element.name)) {
+          if (element.type === "radio" || element.type === "checkbox") {
+            element.checked = localStorage.getItem(element.name) === element.value;
+          } else {
+            element.value = localStorage.getItem(element.name);
+          }
+        }
+      }
+    });
+  }
+
+  loadFormDataFromLocalStorage();
+
+  forms.forEach((form) => {
+    form.addEventListener("input", () => {
+      saveFormDataToLocalStorage(form.id);
+    });
+  });
+
+  window.showNextForm = function (part) {
+    const parts = ["formPart1", "formPart2", "formPart3", "formPart4", "formPart5", "formPart6"];
+    parts.forEach((p) => {
+      document.getElementById(p).classList.remove("visible");
+    });
+    document.getElementById(`formPart${part}`).classList.add("visible");
+        window.scrollTo(0, 0);
+
+        // DESBLOQUEIO DE ITENS
+        if (part>3) {unlocks.sleep = true};
+        unlockItems();
+        
+        barProgress = (part-1) / (parts.length-1); // Calcula barra de progresso
+  };
+});
+
+document.getElementById("form6").addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const formData = {};
+  const forms = document.querySelectorAll("form");
+  forms.forEach((form) => {
+    new FormData(form).forEach((value, key) => {
+      formData[key] = value;
+    });
+  });
+
+  try {
+    const response = await fetch("/hadDogs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await response.json();
+    alert("Resposta adicionada com sucesso!");
+    console.log('Sucesso no modelo "hadDogs":', data);
+  } catch (error) {
+    console.error('Erro ao criar registro no modelo "hadDogs":', error);
+    alert("Erro ao enviar formulário: " + error.message);
+  }
+});
+  </script>
+
+  <!-- Adiciona dependências do bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+    <script>
+      var unlocks = {
+            food: true,
+            sleep: false,
+            pet: false,
+        }
+      // libera a besta
+      window.onload = function() 
+      {
+          mascotAwaken(['form1', 'form2', 'form3', 'form4', 'form5', 'form6'], 36);
+      };
+      document.getElementById('botao-final').addEventListener('click', function() {
+            window.location.href = '/finalPage';
+        });
+  </script>
+
+  <script>
+     document.addEventListener('DOMContentLoaded', function() {
+            const yesCastrated = document.getElementById('yes-castrated');
+            const noCastrated = document.getElementById('no-castrated');
+            const dontKnowCastrated = document.getElementById('dont-know-castrated');
+            const manyMonths = document.getElementById('manyMonths');
+            const castrationAge = document.getElementById('castration_age');
+
+            yesCastrated.addEventListener('change', function() {
+                if (yesCastrated.checked) {
+                    manyMonths.style.display = 'block';
+                    castrationAge.required = true;
+                }
+            });
+
+            noCastrated.addEventListener('change', function() {
+                if (noCastrated.checked) {
+                    manyMonths.style.display = 'none';
+                    castrationAge.required = false;
+                    castrationAge.value = '';
+                }
+            });
+
+            dontKnowCastrated.addEventListener('change', function() {
+                if (dontKnowCastrated.checked) {
+                    manyMonths.style.display = 'none';
+                    castrationAge.required = false;
+                    castrationAge.value = '';
+                }
+            });
+        });
+
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const yesVet = document.getElementById('yes-vet');
+      const noVet = document.getElementById('no-vet');
+      const vetDetails = document.getElementById('vet-details');
+      const numberOfVetVisits = document.getElementById('number_of_vet_visits');
+      const visitReason = document.getElementById('visit_reason');
+
+      yesVet.addEventListener('change', function() {
+          if (yesVet.checked) {
+              vetDetails.style.display = 'block';
+              numberOfVetVisits.required = true;
+              visitReason.required = true;
+          }
+      });
+
+      noVet.addEventListener('change', function() {
+          if (noVet.checked) {
+              vetDetails.style.display = 'none';
+              numberOfVetVisits.required = false;
+              visitReason.required = false;
+              numberOfVetVisits.value = '';
+              visitReason.value = '';
+          }
+      });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const definedRace = document.getElementById('defined-race');
+      const noDefinedBreed = document.getElementById('no-defined-breed');
+      const mixedBreed = document.getElementById('mixed-breed');
+      const dontKnowBreed = document.getElementById('dont-know-breed');
+      const breedDetails = document.getElementById('breed-details');
+      const breedType = document.getElementById('breed_type');
+
+      definedRace.addEventListener('change', function() {
+          if (definedRace.checked) {
+              breedDetails.style.display = 'block';
+              breedType.required = true;
+          }
+      });
+
+      noDefinedBreed.addEventListener('change', function() {
+          if (noDefinedBreed.checked) {
+              breedDetails.style.display = 'none';
+              breedType.required = false;
+              breedType.value = '';
+          }
+
+      mixedBreed.addEventListener('change', function() {
+          if (mixedBreed.checked) {
+              breedDetails.style.display = 'none';
+              breedType.required = false;
+              breedType.value = '';
+          }
+
+      dontKnowBreed.addEventListener('change', function() {
+          if (dontKnowBreed.checked) {
+              breedDetails.style.display = 'none';
+              breedType.required = false;
+              breedType.value = '';
+          }
+        });
+      });
+  });
+});
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const otherReason = document.getElementById('other_reason');
+      const otherReasonDetail = document.getElementById('other_reason_detail');
+
+
+      otherReason.addEventListener('change', function() {
+          if (otherReason.checked) {
+              otherReasonDetail.style.display = 'block';
+              otherReasonDetail.required = true;
+          }else{
+              otherReasonDetail.style.display = 'none';
+              otherReasonDetail.required = false;
+              otherReasonDetail.value = '';
+          }
+      });
+
+          
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const otherReason = document.getElementById('other_reason');
+      const otherReasonDetail = document.getElementById('other_reason_detail');
+
+
+      otherReason.addEventListener('change', function() {
+          if (otherReason.checked) {
+              otherReasonDetail.style.display = 'block';
+              otherReasonDetail.required = true;
+          }else{
+              otherReasonDetail.style.display = 'none';
+              otherReasonDetail.required = false;
+              otherReasonDetail.value = '';
+          }
+      });
+
+          
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const involvedDecisionDetail = document.getElementById('involved_decision_detail');
+      const radioButtons = document.querySelectorAll('input[name="involved_decision"]');
+
+      radioButtons.forEach(function(radio) {
+          radio.addEventListener('change', function() {
+              if (document.getElementById('other-describe').checked) {
+                  involvedDecisionDetail.style.display = 'block';
+                  involvedDecisionDetail.required = true;
+              } else {
+                  involvedDecisionDetail.style.display = 'none';
+                  involvedDecisionDetail.required = false;
+                  involvedDecisionDetail.value = '';
+              }
+          });
+      });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const yesOtherDog = document.getElementById('yes-other-dog');
+      const noOtherDog = document.getElementById('no-other-dog');
+      const reasonWouldLiveWithOtherDog = document.getElementById('reason_would_live_with_other_dog');
+      const reasonWouldNotLiveWithOtherDog = document.getElementById('reason_would_not_live_with_other_dog');
+
+      yesOtherDog.addEventListener('change', function() {
+          if (yesOtherDog.checked) {
+              reasonWouldLiveWithOtherDog.style.display = 'block';
+              reasonWouldNotLiveWithOtherDog.style.display = 'none';
+              reasonWouldNotLiveWithOtherDog.value = '';
+          }
+      });
+
+      noOtherDog.addEventListener('change', function() {
+          if (noOtherDog.checked) {
+              reasonWouldNotLiveWithOtherDog.style.display = 'block';
+              reasonWouldLiveWithOtherDog.style.display = 'none';
+              reasonWouldLiveWithOtherDog.value = '';
+          }
+      });
+  });
+</script>
+
+</body>
+</html>

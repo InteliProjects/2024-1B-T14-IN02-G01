@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sails.js API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .pastel-block {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .pastel-purple { background-color: #decbe4; }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Sails.js API Documentation</h1>
+
+    <p>Esta é a documentação dos endpoints da API Sails.js utilizada neste projeto.</p>
+
+    <h2>Endpoints</h2>
+
+    <!-- Rotas do Formulário DontWantDog -->
+    <div class="pastel-block pastel-purple">
+        <h5>Formulário DontWantDog</h5>
+        <h6>POST /dontWantDogs</h6>
+        <p>Este endpoint cria um novo registro de "DontWantDog" com os dados fornecidos no corpo da requisição.</p>
+        <div class="card mb-4 pastel-purple">
+            <div class="card-header bg-primary text-white">
+                Novo Registro "DontWantDog"
+            </div>
+            <div class="card-body">
+                <form id="dontWantDogForm">
+                    <div class="mb-3">
+                        <label for="reasons" class="form-label">Por que você não deseja conviver com cães?</label>
+                        <textarea id="reasons" name="reasons" class="form-control" rows="6" required></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Enviar formulário</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <h6>GET /dontWantDogs</h6>
+        <p>Este endpoint retorna uma lista de todos os registros "DontWantDog" cadastrados no sistema.</p>
+        <div class="pastel-block pastel-purple">
+            <div class="card-header bg-secondary text-white">
+                Lista de "DontWantDogs"
+            </div>
+            <div class="card-body" id="dontWantDogsList">
+                <!-- Lista de registros será preenchida via JavaScript -->
+            </div>
+        </div>
+        <h6>GET /dontWantDogs/:id</h6>
+        <p>Este endpoint retorna os detalhes de um registro "DontWantDog" específico com o ID fornecido na URL.</p>
+        <div class="pastel-block pastel-pink">
+            <div class="card-header bg-info text-white">
+                Buscar Registro "DontWantDog" por ID
+            </div>
+            <div class="card-body">
+                <form id="getDontWantDogByIdForm">
+                    <div class="mb-3">
+                        <label for="dontWantDogId" class="form-label">ID do Registro</label>
+                        <input type="number" class="form-control" id="dontWantDogId" name="dontWantDog_id" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-info">Buscar Registro</button>
+                    </div>
+                </form>
+                <div id="dontWantDogDetails" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    // Enviar dados para criar um novo registro "DontWantDog"
+    document.getElementById('dontWantDogForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const formJSON = Object.fromEntries(formData.entries());
+
+        axios.post('/dontWantDogs', formJSON)
+            .then(function (response) {
+                alert('Formulário enviado com sucesso!');
+                document.getElementById('dontWantDogForm').reset();
+            })
+            .catch(function (error) {
+                console.error('Erro ao criar registro "DontWantDog":', error);
+                alert('Erro ao enviar formulário: ' + error.message);
+            });
+    });
+
+    // Função para carregar a lista de registros "DontWantDog"
+    function carregarListaDontWantDogs() {
+        axios.get('/dontWantDogs')
+            .then(function (response) {
+                const dontWantDogs = response.data;
+                const listaHtml = dontWantDogs.map(function (dontWantDog) {
+                    return `<div class="mb-2"><strong>ID:</strong> ${dontWantDog.id} - <strong>Razões:</strong> ${dontWantDog.reasons}</div>`;
+                }).join('');
+                document.getElementById('dontWantDogsList').innerHTML = listaHtml;
+            })
+            .catch(function (error) {
+                console.error('Erro ao carregar lista de registros "DontWantDog":', error);
+            });
+    }
+
+    // Função para buscar um registro "DontWantDog" por ID
+    document.getElementById('getDontWantDogByIdForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const dontWantDogId = document.getElementById('dontWantDogId').value;
+
+        axios.get(`/dontWantDogs/${dontWantDogId}`)
+            .then(function (response) {
+                const dontWantDog = response.data;
+                const dontWantDogDetailsHtml = `<div class="mb-2"><strong>ID:</strong> ${dontWantDog.id} <br><strong>Razões:</strong> ${dontWantDog.reasons}</div>`;
+                document.getElementById('dontWantDogDetails').innerHTML = dontWantDogDetailsHtml;
+            })
+            .catch(function (error) {
+                console.error('Erro ao buscar registro "DontWantDog":', error);
+                document.getElementById('dontWantDogDetails').innerHTML = '<p class="text-danger">Registro não encontrado.</p>';
+            });
+    });
+
+    // Carregar lista de registros "DontWantDog" ao carregar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        carregarListaDontWantDogs();
+    });
+</script>
+</body>
+</html>

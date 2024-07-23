@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sails.js API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .pastel-block {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .pastel-green { background-color: #ccebc5; }
+        .card-header.bg-primary {
+            background-color: #007bff !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Sails.js API Documentation</h1>
+    
+    <p>Esta é a documentação dos endpoints da API Sails.js utilizada neste projeto.</p>
+   
+    <h2>Endpoints</h2>
+
+    <!-- Rotas do Formulário Resenha -->
+    <div class="pastel-block pastel-green">
+        <h5>Formulário Resenha</h5>
+        <h6>POST /resenhas</h6>
+        <p>Este endpoint cria uma nova resenha com os dados fornecidos no corpo da requisição.</p>
+
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                Criar Nova Resenha
+            </div>
+            <div class="card-body pastel-green">
+                <form id="createResenhaForm">
+                    <div class="mb-3">
+                        <label for="userId" class="form-label">ID do Usuário</label>
+                        <input type="number" class="form-control" id="userId" name="user_id" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Idade</label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="genero" class="form-label">Gênero</label>
+                        <select class="form-select" id="genero" name="gender" required>
+                            <option value="">Selecione seu gênero</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Não Binário">Não Binário</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="education_level" class="form-label">Escolaridade</label>
+                        <input list="escolaridade" class="form-control" id="education_level" name="education_level" required>
+                        <datalist id="escolaridade">
+                            <option value="Ensino fundamental incompleto">
+                            <option value="Ensino fundamental completo">
+                            <option value="Ensino médio incompleto">
+                            <option value="Ensino médio completo">
+                            <option value="Ensino técnico ou profissionalizante">
+                            <option value="Graduação incompleta">
+                            <option value="Graduação completa">
+                            <option value="Pós-graduação (especialização, mestrado, doutorado)">
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <p>Moradia:</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="moradia-casa" name="house_type" value="Casa" required>
+                            <label class="form-check-label" for="moradia-casa">Casa</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="moradia-apartamento" name="house_type" value="Apartamento" required>
+                            <label class="form-check-label" for="moradia-apartamento">Apartamento</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="moradia-rural" name="house_type" value="Imóvel Rural" required>
+                            <label class="form-check-label" for="moradia-rural">Imóvel Rural</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="moradia-outro" name="house_type" value="Outro" required>
+                            <label class="form-check-label" for="moradia-outro">Outro</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="family_constitution" class="form-label">Constituição Familiar</label>
+                        <input list="familia" class="form-control" id="family_constitution" name="family_constitution" required>
+                        <datalist id="familia">
+                            <option value="Solteiro">
+                            <option value="Solteiros que vivem com amigos">
+                            <option value="Casal sem filhos humanos (Hetero ou Homo)">
+                            <option value="Casal com filhos pequenos (Hetero ou Homo)">
+                            <option value="Casal com filhos adolescentes (Hetero ou Homo)">
+                            <option value="Casal com filhos adultos (Hetero ou Homo)">
+                            <option value="Casal idoso (70+)">
+                            <option value="Casal idoso (70+) com filhos adultos">
+                            <option value="Idoso sozinho">
+                            <option value="Idoso com filhos">
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="income" class="form-label">Renda Familiar Mensal</label>
+                        <input list="renda" class="form-control" id="income" name="income" required>
+                        <datalist id="renda">
+                            <option value="Até R$ 1.412">
+                            <option value="De 1.412 até 4.236">
+                            <option value="De 4.236 até 8.472">
+                            <option value="De 8.472 até 12.708">
+                            <option value="Acima de 12.708">
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="people_in_house" class="form-label">Quantas pessoas na moradia</label>
+                        <input type="number" class="form-control" id="people_in_house" name="people_in_house" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">País</label>
+                        <input list="paisList" class="form-control" id="country" name="country" required>
+                        <datalist id="paisList">
+                            <option value="Brasil">
+                            <option value="Gringo">
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label">Estado</label>
+                        <input list="estadoList" class="form-control" id="state" name="state" required>
+                        <datalist id="estadoList">
+                            <option value="Alagoas">
+                            <option value="Gringo">
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Cidade</label>
+                        <input list="cidadeList" class="form-control" id="city" name="city" required>
+                        <datalist id="cidadeList">
+                            <option value="Maceió">
+                            <option value="Gringo">
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="neighborhood" class="form-label">Bairro</label>
+                        <input list="bairroList" class="form-control" id="neighborhood" name="neighborhood" required>
+                        <datalist id="bairroList">
+                            <option value="Serraria">
+                            <option value="Gringo">
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="next_forms" class="form-label">Qual a sua situação?</label>
+                        <select id="next_forms" class="form-select" name="next_forms" required>
+                            <option value="have">Tenho um cachorro</option>
+                            <option value="had">Tive um cachorro</option>
+                            <option value="want">Quero ter um cachorro</option>
+                            <option value="null">Não quero ter um cachorro</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="complete_name" class="form-label">Nome Completo (Opcional)</label>
+                        <input type="text" class="form-control" id="complete_name" name="complete_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="social_name" class="form-label">Nome Social (Opcional)</label>
+                        <input type="text" class="form-control" id="social_name" name="social_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Telefone (Opcional)</label>
+                        <input type="text" class="form-control" id="phone" name="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email (Opcional)</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="concordo" name="concordo" required>
+                        <label class="form-check-label" for="concordo">Concordo com o envio das informações.</label>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Enviar Formulário</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <h6>GET /resenhas</h6>
+        <p>Este endpoint retorna uma lista de todas as resenhas cadastradas no sistema.</p>
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                Lista de Resenhas
+            </div>
+            <div class="card-body pastel-green" id="resenhasList">
+                <!-- Lista de resenhas será preenchida via JavaScript -->
+            </div>
+        </div>
+
+        <h6>GET /resenhas/:id</h6>
+        <p>Este endpoint retorna os detalhes de uma resenha específica com o ID fornecido na URL.</p>
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                Buscar Resenha por ID
+            </div>
+            <div class="card-body pastel-green">
+                <form id="getResenhaByIdForm">
+                    <div class="mb-3">
+                        <label for="resenhaId" class="form-label">ID da Resenha</label>
+                        <input type="number" class="form-control" id="resenhaId" name="resenha_id" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-info">Buscar Resenha</button>
+                    </div>
+                </form>
+                <div id="resenhaDetails" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    // Função para carregar a lista de resenhas
+    function carregarListaResenhas() {
+        axios.get('/resenhas')
+            .then(function (response) {
+                const resenhas = response.data;
+                const listaHtml = resenhas.map(function (resenha) {
+                    return `
+                        <div class="mb-2">
+                            <strong>ID:</strong> ${resenha.id} - 
+                            <strong>Idade:</strong> ${resenha.age} - 
+                            <strong>Gênero:</strong> ${resenha.gender} - 
+                            <strong>Escolaridade:</strong> ${resenha.education_level} - 
+                            <strong>Moradia:</strong> ${resenha.house_type} - 
+                            <strong>Constituição Familiar:</strong> ${resenha.family_constitution} - 
+                            <strong>Renda:</strong> ${resenha.income} - 
+                            <strong>Pessoas na Moradia:</strong> ${resenha.people_in_house} - 
+                            <strong>País:</strong> ${resenha.country} - 
+                            <strong>Estado:</strong> ${resenha.state} - 
+                            <strong>Cidade:</strong> ${resenha.city} - 
+                            <strong>Bairro:</strong> ${resenha.neighborhood} - 
+                            <strong>Próxima Situação:</strong> ${resenha.next_forms} - 
+                            <strong>Nome Completo:</strong> ${resenha.complete_name} - 
+                            <strong>Nome Social:</strong> ${resenha.social_name} - 
+                            <strong>Telefone:</strong> ${resenha.phone} - 
+                            <strong>Email:</strong> ${resenha.email}
+                        </div>
+                    `;
+                }).join('');
+                document.getElementById('resenhasList').innerHTML = listaHtml;
+            })
+            .catch(function (error) {
+                console.error('Erro ao carregar lista de resenhas:', error);
+            });
+    }
+
+    // Enviar dados para criar uma nova resenha
+    document.getElementById('createResenhaForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const user_id = document.getElementById('userId').value;
+        const age = document.getElementById('age').value;
+        const gender = document.getElementById('genero').value;
+        const education_level = document.getElementById('education_level').value;
+        const house_type = document.querySelector('input[name="house_type"]:checked').value;
+        const family_constitution = document.getElementById('family_constitution').value;
+        const income = document.getElementById('income').value;
+        const people_in_house = document.getElementById('people_in_house').value;
+        const country = document.getElementById('country').value;
+        const state = document.getElementById('state').value;
+        const city = document.getElementById('city').value;
+        const neighborhood = document.getElementById('neighborhood').value;
+        const next_forms = document.getElementById('next_forms').value;
+        const complete_name = document.getElementById('complete_name').value;
+        const social_name = document.getElementById('social_name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+
+        axios.post('/resenhas', { user_id, age, gender, education_level, house_type, family_constitution, income, people_in_house, country, state, city, neighborhood, next_forms, complete_name, social_name, phone, email })
+            .then(function () {
+                // Atualizar a lista de resenhas após a criação
+                carregarListaResenhas();
+                // Limpar os campos do formulário
+                document.getElementById('createResenhaForm').reset();
+            })
+            .catch(function (error) {
+                console.error('Erro ao criar resenha:', error);
+            });
+    });
+
+    // Função para buscar uma resenha por ID
+    document.getElementById('getResenhaByIdForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const resenhaId = document.getElementById('resenhaId').value;
+
+        axios.get(`/resenhas/${resenhaId}`)
+            .then(function (response) {
+                const resenha = response.data;
+                const resenhaDetailsHtml = `
+                    <div class="mb-2">
+                        <strong>ID:</strong> ${resenha.id} <br>
+                        <strong>Idade:</strong> ${resenha.age} <br>
+                        <strong>Gênero:</strong> ${resenha.gender} <br>
+                        <strong>Escolaridade:</strong> ${resenha.education_level} <br>
+                        <strong>Moradia:</strong> ${resenha.house_type} <br>
+                        <strong>Constituição Familiar:</strong> ${resenha.family_constitution} <br>
+                        <strong>Renda:</strong> ${resenha.income} <br>
+                        <strong>Pessoas na Moradia:</strong> ${resenha.people_in_house} <br>
+                        <strong>País:</strong> ${resenha.country} <br>
+                        <strong>Estado:</strong> ${resenha.state} <br>
+                        <strong>Cidade:</strong> ${resenha.city} <br>
+                        <strong>Bairro:</strong> ${resenha.neighborhood} <br>
+                        <strong>Próxima Situação:</strong> ${resenha.next_forms} <br>
+                        <strong>Nome Completo:</strong> ${resenha.complete_name} <br>
+                        <strong>Nome Social:</strong> ${resenha.social_name} <br>
+                        <strong>Telefone:</strong> ${resenha.phone} <br>
+                        <strong>Email:</strong> ${resenha.email}
+                    </div>
+                `;
+                document.getElementById('resenhaDetails').innerHTML = resenhaDetailsHtml;
+            })
+            .catch(function (error) {
+                console.error('Erro ao buscar resenha:', error);
+                document.getElementById('resenhaDetails').innerHTML = '<p class="text-danger">Resenha não encontrada.</p>';
+            });
+    });
+
+    // Carregar lista de resenhas ao carregar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        carregarListaResenhas();
+    });
+</script>
+
+</body>
+</html>

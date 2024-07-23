@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sails.js API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .pastel-block {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .pastel-blue { background-color: #b3cde0; }
+        .pastel-green { background-color: #ccebc5; }
+        .pastel-yellow { background-color: #fef9a7; }
+        .pastel-pink { background-color: #fbb4ae; }
+        .pastel-purple { background-color: #decbe4; }
+        .pastel-orange { background-color: #fdd7b5; }
+
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Sails.js API Documentation</h1>
+
+    <p>Esta é a documentação dos endpoints da API Sails.js utilizada neste projeto.</p>
+
+    <h2>Endpoints</h2>
+
+    <!-- Rotas de Páginas -->
+    <div class="pastel-block pastel-blue">
+        <h5>Páginas</h5>
+        <h6>GET /</h6>
+        <p>Este endpoint retorna a página inicial.</p>
+        <h6>GET /login</h6>
+        <p>Este endpoint retorna a página de login.</p>
+        <h6>GET /generalforms</h6>
+        <p>Este endpoint retorna a página de formulários gerais.</p>
+        <h6>GET /formsNull</h6>
+        <p>Este endpoint retorna a página de formulários nulos.</p>
+        <h6>GET /formsHad</h6>
+        <p>Este endpoint retorna a página de formulários "Had".</p>
+        <h6>GET /formsHave</h6>
+        <p>Este endpoint retorna a página de formulários "Have".</p>
+        <h6>GET /formswant</h6>
+        <p>Este endpoint retorna a página de formulários "Want".</p>
+        <h6>GET /docsRoutes</h6>
+        <p>Este endpoint retorna a página de documentação das rotas.</p>
+        <h6>GET /dashboard</h6>
+        <p>Este endpoint retorna a página do dashboard.</p>
+    </div>
+
+    <!-- Rotas para registro e login -->
+    <div class="pastel-block pastel-pink">
+        <h5>Registro e Login</h5>
+        <h6>POST /register</h6>
+        <p>Este endpoint registra um novo usuário com os dados fornecidos no corpo da requisição.</p>
+        <h6>POST /login</h6>
+        <p>Este endpoint autentica um usuário com as credenciais fornecidas no corpo da requisição.</p>
+    </div>
+
+    <!-- Páginas de registro e login -->
+    <div class="pastel-block pastel-purple">
+        <h5>Páginas de Registro e Login</h5>
+        <h6>GET /register</h6>
+        <p>Este endpoint retorna a página de registro de usuários.</p>
+        <h6>GET /login</h6>
+        <p>Este endpoint retorna a página de login de usuários.</p>
+    </div>
+
+    <!-- Rota do dashboard -->
+    <div class="pastel-block pastel-blue">
+        <h5>Dashboard</h5>
+        <h6>GET /ResPorForms</h6>
+        <p>Este endpoint retorna os dados para o gráfico de tipos de formulário para o dashboard.</p>
+    </div>
+
+     <!-- Botões de Navegação -->
+     <div class="d-grid gap-2">
+        <button class="btn pastel-blue" onclick="window.location.href='/docsRoutes'">Documentação de Rotas</button>
+        <button class="btn pastel-green" onclick="window.location.href='/docsResenha'">Documentação de Resenhas</button>
+        <button class="btn pastel-yellow" onclick="window.location.href='/docsHaveDog'">Documentação de HaveDog</button>
+        <button class="btn pastel-pink" onclick="window.location.href='/docsHadDog'">Documentação de HadDog</button>
+        <button class="btn pastel-purple" onclick="window.location.href='/docsDontWantDog'">Documentação de DontWantDog</button>
+        <button class="btn pastel-orange" onclick="window.location.href='/docsWantDog'">Documentação de WantDog</button></br>
+    </div>
+
+</div>
+
+</body>
+</html>

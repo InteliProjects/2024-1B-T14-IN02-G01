@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/styles/dashboard.css" />
+    <!-- Inclua o CSS do ApexCharts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@latest/dist/apexcharts.css">
+    <!-- <style>
+        #resPorForms,
+        #resAmount {
+            max-width: 650px;
+            margin: 35px auto;
+        }
+    </style> -->
+</head>
+
+<body>
+
+    <header class="navBar">
+        <img src="/images/logo-dark.svg" alt="logo branca">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="download"
+            onclick="downloadCsv()"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path fill="#ffffff"
+                d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z" />
+        </svg>
+    </header>
+
+    <h1 id="mainTitle">Dashboard</h1>
+
+    <div id="chartSlotResAmount">
+        <h1 class="chartTitles">Quantidade de respostas ao longo do tempo</h1>
+        <div id="resAmount"></div>
+    </div>
+
+    <div id="chartSlotResPorForms">
+        <h1 class="chartTitles">Respostas por tipo de formulário</h1>
+        <div id="resPorForms"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        // Função que chama o download dos dados
+        function downloadCsv() {
+            window.location.href = "/export/download";
+        }
+
+        async function runResByMonth() {
+            try {
+                // Faz a requisição GET para a rota do controller
+                const response = await fetch("/resByMonth");
+
+                // Verifica se a resposta foi bem-sucedida
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar respostas");
+                }
+
+                // Converte a resposta para JSON
+                const data = await response.json();
+
+                // data é uma array com duas arrays: [keys, values]
+                const months = data[0];
+                const values = data[1];
+
+                // Log dos dados recebidos para depuração
+                console.log("Categories:", months);
+                console.log("Data:", values);
+
+                // Config para o gráfico de número de respostas ao longo do tempo
+                var optionsResAmount = {
+                    series: [
+                        {
+                            name: "Respostas",
+                            data: values,
+                        },
+                    ],
+                    chart: {
+                        height: 250,
+                        type: "line",
+                        zoom: {
+                            enabled: true,
+                        },
+                    },
+                    stroke: {
+                        curve: "straight",
+                    },
+                    grid: {
+                        row: {
+                            colors: ["#f3f3f3", "transparent"],
+                            opacity: 0.5,
+                        },
+                    },
+                    xaxis: {
+                        categories: months,
+                    },
+                };
+
+                var chartResAmount = new ApexCharts(
+                    document.querySelector("#resAmount"),
+                    optionsResAmount
+                );
+
+                chartResAmount.render();
+            } catch (error) {
+                console.error("Erro ao buscar dados do gráfico do número de respostas por mês:", error);
+            }
+        }
+
+        // Função para buscar dados do servidor e renderizar o gráfico "ResPorForms"
+        async function runResPorForms() {
+            try {
+                // Faz a requisição GET para a rota do controller
+                const response = await fetch("/resPorForms");
+
+                // Verifica se a resposta foi bem-sucedida
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar quantidades");
+                }
+
+                // Converte a resposta para JSON
+                const data = await response.json();
+
+                // data é uma array com duas arrays: [keys, values]
+                const keys = data[0];
+                const values = data[1];
+
+                // Log dos dados recebidos para depuração
+                console.log("Labels:", keys);
+                console.log("Series:", values);
+
+                // Config para o gráfico de número de respostas por formulário
+                var optionsResPorForms = {
+                    series: values.map(Number), // Certifique-se de que os valores são números
+                    labels: keys,
+                    chart: {
+                        type: "donut",
+                    },
+                    legend: {
+                        position: "bottom",
+                    },
+                    plotOptions: {
+                        pie: {
+                            customScale: 0.8,
+                        },
+                    },
+                };
+
+                // Cria e renderiza o gráfico
+                var chartResPorForms = new ApexCharts(
+                    document.querySelector("#resPorForms"),
+                    optionsResPorForms
+                );
+
+                chartResPorForms.render();
+            } catch (error) {
+                console.error("Erro ao buscar dados do gráfico de tipo de formulário:", error);
+            }
+        }
+
+        // Chama a função para buscar os dados do gráfico quando a página carregar
+        window.onload = function () {
+            runResPorForms()
+            runResByMonth()
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PsicoPets - Cadastro</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: #f6f5f7;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+        margin: 0 0 20px;
+      }
+
+      .container {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
+          0 10px 10px rgba(0, 0, 0, 0.2);
+        width: 768px;
+        max-width: 100%;
+        min-height: 480px;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .left,
+      .right {
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .right {
+        background: linear-gradient(to right, #689d97, #87cdc4) no-repeat 0 0 /
+          cover;
+        color: white;
+      }
+
+      .left {
+        position: relative;
+      }
+
+      .left::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1;
+      }
+
+      .register-form {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .register-form h1 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: bold;
+        margin: 0 0 20px;
+      }
+
+      .register-form p {
+        font-family: "Montserrat", sans-serif;
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        margin: 20px 0 30px;
+      }
+
+      .register-form input {
+        background: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      button {
+        border-radius: 20px;
+        border: 1px solid white;
+        background-color: transparent;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .register-form button {
+        border-radius: 20px;
+        border: 1px solid #f5f2d0;
+        background: linear-gradient(to right, #689d97, #87cdc4) no-repeat 0 0 /
+          cover;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .register-form button:hover {
+        background: linear-gradient(to right, #689d97, #87cdc4) no-repeat 0 0 /
+          cover;
+      }
+
+      .register-form button.transparent {
+        background: transparent;
+        border-color: white;
+      }
+
+      .social-container {
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .social-container a {
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        height: 40px;
+        width: 40px;
+      }
+
+      .footer {
+        margin-top: 25px;
+        text-align: center;
+      }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Configuração do Firebase
+        const firebaseConfig = {
+          apiKey: "AIzaSyASNPXniNYMktbQUAjOhjGWA4_dkO9uZ-Q",
+          authDomain: "abandono-zero-c27b0.firebaseapp.com",
+          projectId: "abandono-zero-c27b0",
+          storageBucket: "abandono-zero-c27b0.appspot.com",
+          messagingSenderId: "537894418550",
+          appId: "1:537894418550:web:8b559db756d68868c80757",
+          measurementId: "G-F2K8DE2MLD",
+        };
+
+        // Inicialize o Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        const formCadastro = document.getElementById("formCadastro");
+        formCadastro.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          try {
+            const response = await fetch("/authRegister", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name, email, password }),
+            });
+            const data = await response.json();
+            if (data.user) {
+              window.location.href = "/login";
+            } else {
+              alert("Erro ao fazer cadastro");
+            }
+          } catch (error) {
+            console.error("Erro ao fazer cadastro:", error);
+          }
+        });
+      });
+
+      function redirectToLogin() {
+        window.location.href = "/login";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Seção esquerda: Botão para registro -->
+      <div class="left">
+        <form
+          id="formCadastro"
+          class="register-form"
+          action="submit"
+          method="POST"
+        >
+          <h2>Faça seu cadastro</h2>
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <label for="password">Senha:</label>
+          <input type="password" id="password" name="password" required />
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+      <!-- Seção direita: Formulário de cadastro -->
+      <div class="right">
+        <h2>Não tem conta?</h2>
+        <p>Faça cadastro para responder o formulário</p>
+        <button onclick="redirectToLogin()">Fazer login</button>
+      </div>
+    </div>
+  </body>
+</html>
